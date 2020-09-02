@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "582432144222",
+    "firebase_url": "https://educare-ea101.firebaseio.com",
+    "project_id": "educare-ea101",
+    "storage_bucket": "educare-ea101.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:582432144222:android:57c736f0f6c1cfb47eedcf",
+        "android_client_info": {
+          "package_name": "com.example.medico"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "582432144222-4o7hotp67riml5u5ui6jaj76n2bq4ovi.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.medico",
+            "certificate_hash": "38c5b27847b76edb058577f44995b5286447b3fe"
+          }
+        },
+        {
+          "client_id": "582432144222-g3k2fc2k3sqnb6838p3omc5gc8o817t2.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAM5jO8NHtAJjUKrBp40GTxCmTEF6_dqfU"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "582432144222-g3k2fc2k3sqnb6838p3omc5gc8o817t2.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
