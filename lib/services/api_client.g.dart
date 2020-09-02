@@ -9,8 +9,7 @@ part of 'api_client.dart';
 class _ApiClient implements ApiClient {
   _ApiClient(this._dio, {this.baseUrl}) {
     ArgumentError.checkNotNull(_dio, '_dio');
-    this.baseUrl ??=
-        'http://ec2-18-216-148-49.us-east-2.compute.amazonaws.com:8080';
+    this.baseUrl ??= 'http://192.168.1.100:8080';
   }
 
   final Dio _dio;
@@ -37,9 +36,10 @@ class _ApiClient implements ApiClient {
   }
 
   @override
-  getMedicines() async {
+  getMedicines(page) async {
+    ArgumentError.checkNotNull(page, 'page');
     const _extra = <String, dynamic>{};
-    final queryParameters = <String, dynamic>{};
+    final queryParameters = <String, dynamic>{r'page': page};
     final _data = <String, dynamic>{};
     final Response<List<dynamic>> _result = await _dio.request('/medicines',
         queryParameters: queryParameters,

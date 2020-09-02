@@ -12,10 +12,10 @@ class ShopUseCase {
   final ApiClient apiService;
   ShopUseCase(this.apiService);
 
-  Future<ServerModel<List<Medicine>>> getMedicines() async {
+  Future<ServerModel<List<Medicine>>> getMedicines({@required int page}) async {
     List<Medicine> response;
     try {
-      response = await apiService.getMedicines();
+      response = await apiService.getMedicines(page);
     } catch (error, stacktrace) {
       print("Exception occurred: $error stackTrace: $stacktrace");
       return ServerModel()..setException(ServerError.withError(error: error));

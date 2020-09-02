@@ -27,11 +27,13 @@ class ShopBloc {
 
   final _cartController = BehaviorSubject<ServerModel<Cart>>();
 
-  void getMedicines() async {
-    shopUseCase
-        .getMedicines()
-        .then((serverModel) => _medicineController.add(serverModel))
-        .catchError((serverModel) => _medicineController.add(serverModel));
+  Future<List<ServerModel<List<Medicine>>>> getMedicines(int page) async {
+    final List<ServerModel<List<Medicine>>> tempList = [];
+    final response = await shopUseCase.getMedicines(page: page);
+    if (!response.data.isEmpty) {
+      tempList.add(response);
+    }
+    return tempList;
   }
 
   void getDiagnolotics() async {

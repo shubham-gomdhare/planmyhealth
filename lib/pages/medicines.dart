@@ -11,6 +11,7 @@ import 'package:medico/util/server_model.dart';
 import 'package:medico/widgets/medecinesWidget.dart';
 import 'package:medico/widgets/searchWidget.dart';
 import 'package:modal_progress_hud/modal_progress_hud.dart';
+import 'package:pagination_view/pagination_view.dart';
 import 'package:provider/provider.dart';
 
 class Medicines extends StatelessWidget {
@@ -29,7 +30,6 @@ class Medicines extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    bloc.getMedicines();
     bloc.getCart(userId: user.uid);
     return StreamBuilder<bool>(
       initialData: false,
@@ -58,92 +58,96 @@ class Medicines extends StatelessWidget {
                 ),
               ),
             ),
-            body: StreamBuilder<ServerModel<List<Medicine>>>(
-              stream: bloc.medicineStream,
-              initialData: null,
-              builder: (context, snapshot) {
-                if (snapshot.data == null)
-                  return Center(child: CircularProgressIndicator());
-                final medicineList = snapshot.data.data;
-                final error = snapshot.data.getException;
-                return error == null
-                    ? SingleChildScrollView(
-                        child: Column(
-                          children: <Widget>[
-                            Stack(
-                              children: <Widget>[
-                                Container(
-                                  height: 20,
-                                  padding: const EdgeInsets.only(
-                                      left: 0.0, right: 0.0),
-                                  decoration: BoxDecoration(
-                                    borderRadius: BorderRadius.only(
-                                        bottomLeft: Radius.circular(25.0),
-                                        bottomRight: Radius.circular(25.0)),
-                                    color: Theme.of(context).accentColor,
-                                  ),
-                                ),
-                                Padding(
-                                  padding: const EdgeInsets.only(
-                                      top: 0, left: 12.0, right: 12.0),
-                                  child: SearchBarWidget(bloc.filterMedicines),
-                                ),
-                              ],
-                            ),
-                            Container(
-                              padding: EdgeInsets.only(
-                                  top: 12.0,
-                                  right: 12.0,
-                                  left: 12.0,
-                                  bottom: 12.0),
-                              alignment: Alignment.topLeft,
-                              child: Text(
-                                'Medecines :',
-                                style: TextStyle(
-                                  fontFamily: 'Poppins',
-                                  fontSize: 16.0,
-                                  color: Theme.of(context).focusColor,
-                                  fontWeight: FontWeight.bold,
-                                ),
-                              ),
-                            ),
-                            Container(
-                              padding: EdgeInsets.only(
-                                  right: 12.0, left: 12.0, bottom: 12.0),
-                              decoration: BoxDecoration(
-                                color: Theme.of(context).primaryColor,
-                                borderRadius: BorderRadius.circular(20.0),
-                              ),
-                              child: ListView.separated(
-                                padding: EdgeInsets.symmetric(vertical: 15),
-                                shrinkWrap: true,
-                                primary: false,
-                                itemCount: medicineList.length,
-                                separatorBuilder: (context, index) {
-                                  return SizedBox(
-                                    height: 7,
-                                  );
-                                },
-                                itemBuilder: (context, index) {
-                                  return MedicinesWidget(
-                                    medicineList.elementAt(index),
-                                    () {
-                                      bloc.addMedicineToCart(
-                                        user.uid,
-                                        medicineList.elementAt(index),
-                                      );
-                                    },
-                                  );
-                                },
-                              ),
-                            ),
-                          ],
+            body: Column(
+              mainAxisSize: MainAxisSize.max,
+              children: [
+                Column(
+                  children: <Widget>[
+                    Stack(
+                      children: <Widget>[
+                        Container(
+                          height: 20,
+                          padding: const EdgeInsets.only(left: 0.0, right: 0.0),
+                          decoration: BoxDecoration(
+                            borderRadius: BorderRadius.only(
+                                bottomLeft: Radius.circular(25.0),
+                                bottomRight: Radius.circular(25.0)),
+                            color: Theme.of(context).accentColor,
+                          ),
                         ),
-                      )
-                    : Center(
-                        child: Text(
-                            '${snapshot.data.getException.getErrorMessage()}'));
-              },
+                        Padding(
+                          padding: const EdgeInsets.only(
+                              top: 0, left: 12.0, right: 12.0),
+                          child: SearchBarWidget(bloc.filterMedicines),
+                        ),
+                      ],
+                    ),
+                    Container(
+                      padding: EdgeInsets.only(
+                          top: 12.0, right: 12.0, left: 12.0, bottom: 12.0),
+                      alignment: Alignment.topLeft,
+                      child: Text(
+                        'Medecines :',
+                        style: TextStyle(
+                          fontFamily: 'Poppins',
+                          fontSize: 16.0,
+                          color: Theme.of(context).focusColor,
+                          fontWeight: FontWeight.bold,
+                        ),
+                      ),
+                    ),
+                  ],
+                ),
+                Expanded(
+                  child: PaginationView<ServerModel<List<Medicine>>>(
+                    key: key,
+                    itemBuilder: (BuildContext context,
+                            ServerModel<List<Medicine>> snapshot, int index) =>
+                        Container(
+                      padding: EdgeInsets.only(
+                          right: 12.0, left: 12.0, bottom: 12.0),
+                      decoration: BoxDecoration(
+                        color: Theme.of(context).primaryColor,
+                        borderRadius: BorderRadius.circular(20.0),
+                      ),
+                      child: ListView.separated(
+                        shrinkWrap: true,
+                        primary: false,
+                        itemCount: snapshot.data.length,
+                        separatorBuilder: (context, index) {
+                          return SizedBox(
+                            height: 7,
+                          );
+                        },
+                        itemBuilder: (context, index) {
+                          return MedicinesWidget(
+                            snapshot.data.elementAt(index),
+                            () {
+                              bloc.addMedicineToCart(
+                                user.uid,
+                                snapshot.data.elementAt(index),
+                              );
+                            },
+                          );
+                        },
+                      ),
+                    ),
+                    pageFetch: bloc.getMedicines,
+                    onError: (dynamic error) => Center(
+                      child: Text(error.getException.getErrorMessage()),
+                    ),
+                    onEmpty: Center(
+                      child: Text('Sorry! This is empty'),
+                    ),
+                    bottomLoader: Center(
+                      child: CircularProgressIndicator(),
+                    ),
+                    initialLoader: Center(
+                      child: CircularProgressIndicator(),
+                    ),
+                  ),
+                ),
+              ],
             ),
             bottomNavigationBar: BottomAppBar(
               elevation: 0,

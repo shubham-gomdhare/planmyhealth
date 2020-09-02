@@ -11,8 +11,7 @@ import 'package:retrofit/retrofit.dart';
 part 'api_client.g.dart';
 
 // "http://ec2-18-216-148-49.us-east-2.compute.amazonaws.com
-@RestApi(
-    baseUrl: "http://ec2-18-216-148-49.us-east-2.compute.amazonaws.com:8080")
+@RestApi(baseUrl: "http://192.168.1.100:8080")
 abstract class ApiClient {
   factory ApiClient(Dio dio, {String baseUrl}) = _ApiClient;
 
@@ -20,7 +19,7 @@ abstract class ApiClient {
   Future<List<Doctor>> getDoctors();
 
   @GET('/medicines')
-  Future<List<Medicine>> getMedicines();
+  Future<List<Medicine>> getMedicines(@Query('page') int page);
 
   @GET('/diagnolotics')
   Future<List<Diagnolotic>> getDiagnolotics();

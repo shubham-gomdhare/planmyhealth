@@ -43,6 +43,7 @@ dependencies:
   flutter_login_facebook: ^0.2.1
   intl: ^0.16.1
   image_picker: ^0.6.7+7
+  pagination_view: ^1.0.3+2
 
 dependency_overrides:
   analyzer: '0.39.14'
