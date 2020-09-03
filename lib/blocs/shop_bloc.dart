@@ -14,6 +14,8 @@ class ShopBloc {
   final ShopUseCase shopUseCase;
   ShopBloc(this.shopUseCase);
 
+  final _isSearchController = BehaviorSubject<bool>();
+
   final _medicineController = BehaviorSubject<ServerModel<List<Medicine>>>();
   List<Medicine> _fullMedicines = [];
   bool isDoctorsFiltered = false;
@@ -31,6 +33,9 @@ class ShopBloc {
     final List<ServerModel<List<Medicine>>> tempList = [];
     final response = await shopUseCase.getMedicines(page: page);
     if (!response.data.isEmpty) {
+      _medicineController.value == null
+          ? _medicineController.value = response
+          : _medicineController.value.data.addAll(response.data);
       tempList.add(response);
     }
     return tempList;
@@ -87,11 +92,13 @@ class ShopBloc {
     });
 
     if (medicineName.isEmpty) {
-      _medicineController.value.data = _fullMedicines;
-      _medicineController.add(_medicineController.value);
+      _medicineController.value = null;
+      _isSearchController.add(false);
+      isDoctorsFiltered = false;
     } else {
       _medicineController.value.data = filteredMedicines;
       _medicineController.add(_medicineController.value);
+      _isSearchController.add(true);
     }
   }
 
@@ -189,9 +196,12 @@ class ShopBloc {
 
   Stream<bool> get inAsyncCall => _inAsyncCallController.stream;
 
+  Stream<bool> get isSearch => _isSearchController.stream;
+
   void dispose() {
     _medicineController.close();
     _cartController.close();
     _inAsyncCallController.close();
+    _isSearchController.close();
   }
 }

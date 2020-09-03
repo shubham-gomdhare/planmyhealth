@@ -99,52 +99,99 @@ class Medicines extends StatelessWidget {
                   ],
                 ),
                 Expanded(
-                  child: PaginationView<ServerModel<List<Medicine>>>(
-                    key: key,
-                    itemBuilder: (BuildContext context,
-                            ServerModel<List<Medicine>> snapshot, int index) =>
-                        Container(
-                      padding: EdgeInsets.only(
-                          right: 12.0, left: 12.0, bottom: 12.0),
-                      decoration: BoxDecoration(
-                        color: Theme.of(context).primaryColor,
-                        borderRadius: BorderRadius.circular(20.0),
-                      ),
-                      child: ListView.separated(
-                        shrinkWrap: true,
-                        primary: false,
-                        itemCount: snapshot.data.length,
-                        separatorBuilder: (context, index) {
-                          return SizedBox(
-                            height: 7,
-                          );
-                        },
-                        itemBuilder: (context, index) {
-                          return MedicinesWidget(
-                            snapshot.data.elementAt(index),
-                            () {
-                              bloc.addMedicineToCart(
-                                user.uid,
-                                snapshot.data.elementAt(index),
+                  child: StreamBuilder<bool>(
+                    stream: bloc.isSearch,
+                    initialData: false,
+                    builder: (context, snapshot) {
+                      if (snapshot.data) {
+                        return StreamBuilder<ServerModel<List<Medicine>>>(
+                          stream: bloc.medicineStream,
+                          initialData: null,
+                          builder: (context, snapshot) {
+                            if (snapshot.data == null)
+                              return Center(child: CircularProgressIndicator());
+                            final medicineList = snapshot.data.data;
+                            return Container(
+                              padding: EdgeInsets.only(
+                                  right: 12.0, left: 12.0, bottom: 12.0),
+                              decoration: BoxDecoration(
+                                color: Theme.of(context).primaryColor,
+                                borderRadius: BorderRadius.circular(20.0),
+                              ),
+                              child: ListView.separated(
+                                shrinkWrap: true,
+                                primary: false,
+                                itemCount: medicineList.length,
+                                separatorBuilder: (context, index) {
+                                  return SizedBox(
+                                    height: 7,
+                                  );
+                                },
+                                itemBuilder: (context, index) {
+                                  return MedicinesWidget(
+                                    medicineList.elementAt(index),
+                                    () {
+                                      bloc.addMedicineToCart(
+                                        user.uid,
+                                        medicineList.elementAt(index),
+                                      );
+                                    },
+                                  );
+                                },
+                              ),
+                            );
+                          },
+                        );
+                      }
+                      return PaginationView<ServerModel<List<Medicine>>>(
+                        key: key,
+                        itemBuilder: (BuildContext context,
+                                ServerModel<List<Medicine>> snapshot,
+                                int index) =>
+                            Container(
+                          padding: EdgeInsets.only(
+                              right: 12.0, left: 12.0, bottom: 12.0),
+                          decoration: BoxDecoration(
+                            color: Theme.of(context).primaryColor,
+                            borderRadius: BorderRadius.circular(20.0),
+                          ),
+                          child: ListView.separated(
+                            shrinkWrap: true,
+                            primary: false,
+                            itemCount: snapshot.data.length,
+                            separatorBuilder: (context, index) {
+                              return SizedBox(
+                                height: 7,
                               );
                             },
-                          );
-                        },
-                      ),
-                    ),
-                    pageFetch: bloc.getMedicines,
-                    onError: (dynamic error) => Center(
-                      child: Text(error.getException.getErrorMessage()),
-                    ),
-                    onEmpty: Center(
-                      child: Text('Sorry! This is empty'),
-                    ),
-                    bottomLoader: Center(
-                      child: CircularProgressIndicator(),
-                    ),
-                    initialLoader: Center(
-                      child: CircularProgressIndicator(),
-                    ),
+                            itemBuilder: (context, index) {
+                              return MedicinesWidget(
+                                snapshot.data.elementAt(index),
+                                () {
+                                  bloc.addMedicineToCart(
+                                    user.uid,
+                                    snapshot.data.elementAt(index),
+                                  );
+                                },
+                              );
+                            },
+                          ),
+                        ),
+                        pageFetch: bloc.getMedicines,
+                        onError: (dynamic error) => Center(
+                          child: Text(error.getException.getErrorMessage()),
+                        ),
+                        onEmpty: Center(
+                          child: Text('Sorry! This is empty'),
+                        ),
+                        bottomLoader: Center(
+                          child: CircularProgressIndicator(),
+                        ),
+                        initialLoader: Center(
+                          child: CircularProgressIndicator(),
+                        ),
+                      );
+                    },
                   ),
                 ),
               ],
