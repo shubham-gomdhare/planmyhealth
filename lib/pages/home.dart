@@ -206,14 +206,15 @@ class _HomeState extends State<Home> with SingleTickerProviderStateMixin {
                         Container(
                           margin: const EdgeInsets.only(top: 80.0),
                           padding:
-                              const EdgeInsets.only(left: 30.0, right: 30.0),
+                              const EdgeInsets.only(left: 20.0, right: 20.0),
                           child: Row(
                             mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                            mainAxisSize: MainAxisSize.max,
                             children: <Widget>[
-                              FlatButton(
-                                padding: EdgeInsets.all(0),
-                                shape: RoundedRectangleBorder(
-                                    borderRadius: BorderRadius.circular(150)),
+                              topHeading(
+                                imageAsset: 'images/nurse.png',
+                                title: 'Doctors',
+                                subtitle: 'Search Doctors',
                                 onPressed: () {
                                   Navigator.push(
                                     context,
@@ -225,13 +226,11 @@ class _HomeState extends State<Home> with SingleTickerProviderStateMixin {
                                     ),
                                   );
                                 },
-                                child: ball("images/nurse.png",
-                                    Theme.of(context).scaffoldBackgroundColor),
                               ),
-                              FlatButton(
-                                padding: EdgeInsets.all(0),
-                                shape: RoundedRectangleBorder(
-                                    borderRadius: BorderRadius.circular(150)),
+                              topHeading(
+                                imageAsset: 'images/pill.png',
+                                title: 'Medicines',
+                                subtitle: 'Order medicine',
                                 onPressed: () {
                                   Navigator.push(
                                     context,
@@ -241,13 +240,11 @@ class _HomeState extends State<Home> with SingleTickerProviderStateMixin {
                                     ),
                                   );
                                 },
-                                child: ball("images/pill.png",
-                                    Theme.of(context).scaffoldBackgroundColor),
                               ),
-                              FlatButton(
-                                padding: EdgeInsets.all(0),
-                                shape: RoundedRectangleBorder(
-                                    borderRadius: BorderRadius.circular(150)),
+                              topHeading(
+                                imageAsset: 'images/microscope.png',
+                                title: 'Diagnostic',
+                                subtitle: 'Book test',
                                 onPressed: () {
                                   Navigator.push(
                                     context,
@@ -257,85 +254,17 @@ class _HomeState extends State<Home> with SingleTickerProviderStateMixin {
                                     ),
                                   );
                                 },
-                                child: ball("images/microscope.png",
-                                    Theme.of(context).scaffoldBackgroundColor),
+                              ),
+                              topHeading(
+                                imageAsset: 'images/microscope.png',
+                                title: 'Assist',
+                                subtitle: 'Health Assist',
+                                onPressed: () {},
                               ),
                             ],
                           ),
                         ),
                       ],
-                    ),
-                    Container(
-                      margin: const EdgeInsets.only(top: 6.0, bottom: 6.0),
-                      padding: const EdgeInsets.only(left: 30.0, right: 35.0),
-                      child: Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        crossAxisAlignment: CrossAxisAlignment.center,
-                        children: <Widget>[
-                          Column(
-                            children: <Widget>[
-                              Text(
-                                "Doctors",
-                                style: TextStyle(
-                                  fontSize: 12.0,
-                                  fontFamily: 'Poppins',
-                                  fontWeight: FontWeight.bold,
-                                  color: Theme.of(context).focusColor,
-                                ),
-                              ),
-                              Text(
-                                "Search doctors",
-                                style: TextStyle(
-                                  fontSize: 10.0,
-                                  fontFamily: 'Poppins',
-                                  color: Colors.grey,
-                                ),
-                              ),
-                            ],
-                          ),
-                          Column(
-                            children: <Widget>[
-                              Text(
-                                "Medicines",
-                                style: TextStyle(
-                                  fontSize: 12.0,
-                                  fontFamily: 'Poppins',
-                                  fontWeight: FontWeight.bold,
-                                  color: Theme.of(context).focusColor,
-                                ),
-                              ),
-                              Text(
-                                "Order medicine",
-                                style: TextStyle(
-                                  fontSize: 10.0,
-                                  fontFamily: 'Poppins',
-                                  color: Colors.grey,
-                                ),
-                              ),
-                            ],
-                          ),
-                          Column(
-                            children: <Widget>[
-                              Text(
-                                "Diagnostic",
-                                style: TextStyle(
-                                    fontSize: 12.0,
-                                    fontFamily: 'Poppins',
-                                    fontWeight: FontWeight.bold,
-                                    color: Theme.of(context).focusColor),
-                              ),
-                              Text(
-                                "Book test",
-                                style: TextStyle(
-                                  fontSize: 10.0,
-                                  fontFamily: 'Poppins',
-                                  color: Colors.grey,
-                                ),
-                              ),
-                            ],
-                          ),
-                        ],
-                      ),
                     ),
                     Container(
                       width: double.infinity,
@@ -451,6 +380,46 @@ class _HomeState extends State<Home> with SingleTickerProviderStateMixin {
               )
             : Center(child: Text(error.getErrorMessage()));
       },
+    );
+  }
+
+  Column topHeading({
+    @required String imageAsset,
+    @required String title,
+    @required String subtitle,
+    @required VoidCallback onPressed,
+  }) {
+    return Column(
+      children: [
+        FlatButton(
+          padding: EdgeInsets.all(0),
+          shape:
+              RoundedRectangleBorder(borderRadius: BorderRadius.circular(150)),
+          onPressed: onPressed,
+          child: ball(imageAsset, Theme.of(context).scaffoldBackgroundColor),
+        ),
+        Column(
+          children: <Widget>[
+            Text(
+              title,
+              style: TextStyle(
+                fontSize: 12.0,
+                fontFamily: 'Poppins',
+                fontWeight: FontWeight.bold,
+                color: Theme.of(context).focusColor,
+              ),
+            ),
+            Text(
+              subtitle,
+              style: TextStyle(
+                fontSize: 10.0,
+                fontFamily: 'Poppins',
+                color: Colors.grey,
+              ),
+            ),
+          ],
+        ),
+      ],
     );
   }
 
