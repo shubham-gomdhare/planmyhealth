@@ -14,6 +14,8 @@ import 'package:medico/services/doctor_use_case.dart';
 import 'package:medico/util/server_model.dart';
 import 'package:provider/provider.dart';
 
+import 'account.dart';
+
 class Home extends StatefulWidget {
   @override
   _HomeState createState() => _HomeState();
@@ -55,10 +57,8 @@ class _HomeState extends State<Home> with SingleTickerProviderStateMixin {
         return homeWidget();
       case 1:
         return prefix0.Conversation();
-//      case 2:
-//        return AcountWidget(
-//          acountInfos: ["${widget.acountInfos[0]}", "${widget.acountInfos[1]}"],
-//        );
+      case 2:
+        return AccountWidget(user);
       default:
         return homeWidget();
     }
@@ -118,7 +118,7 @@ class _HomeState extends State<Home> with SingleTickerProviderStateMixin {
   }
 
   StreamBuilder homeWidget() {
-    final auth = Provider.of<AuthBase>(context);
+    final auth = Provider.of<AuthBase>(context, listen: false);
     return StreamBuilder<ServerModel<List<Doctor>>>(
       stream: bloc.doctorStream,
       initialData: null,

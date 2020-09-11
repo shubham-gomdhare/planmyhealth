@@ -1,6 +1,6 @@
 //import 'package:curved_navigation_bar/curved_navigation_bar.dart';
 //import 'package:flutter/material.dart';
-//import 'package:medico/pages/acount.dart';
+//import 'package:medico/pages/account.dart';
 //import 'package:medico/pages/conversations.dart' as prefix0;
 //import 'package:medico/services/auth.dart';
 //import 'package:provider/provider.dart';

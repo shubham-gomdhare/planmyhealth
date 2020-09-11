@@ -6,6 +6,7 @@ import 'package:medico/models/diagnolotic.dart';
 import 'package:medico/models/doctors.dart';
 import 'package:medico/models/insurance.dart';
 import 'package:medico/models/medicines.dart';
+import 'package:medico/models/order.dart';
 import 'package:medico/models/physiotherapy_speciality.dart';
 import 'package:medico/models/server_success.dart';
 import 'package:retrofit/retrofit.dart';
@@ -56,4 +57,7 @@ abstract class ApiClient {
 
   @GET('/healthassist/insurances')
   Future<List<Insurance>> getInsurances();
+
+  @GET('/cart/orders')
+  Future<List<Order>> getOrders(@Query('userId') String userId);
 }

@@ -4,6 +4,7 @@ import 'package:flutter/foundation.dart';
 import 'package:medico/models/cart.dart';
 import 'package:medico/models/diagnolotic.dart';
 import 'package:medico/models/medicines.dart';
+import 'package:medico/models/order.dart';
 import 'package:medico/models/server_success.dart';
 import 'package:medico/services/api_client.dart';
 import 'package:medico/util/server_model.dart';
@@ -74,6 +75,17 @@ class ShopUseCase {
     ServerSuccess response;
     try {
       response = await apiService.checkout(userId, imageFIle);
+    } catch (error, stacktrace) {
+      print("Exception occurred: $error stackTrace: $stacktrace");
+      return ServerModel()..setException(ServerError.withError(error: error));
+    }
+    return ServerModel()..data = response;
+  }
+
+  Future<ServerModel<List<Order>>> getOrders({@required String userId}) async {
+    List<Order> response;
+    try {
+      response = await apiService.getOrders(userId);
     } catch (error, stacktrace) {
       print("Exception occurred: $error stackTrace: $stacktrace");
       return ServerModel()..setException(ServerError.withError(error: error));
