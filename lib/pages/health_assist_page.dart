@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:medico/blocs/health_assist_page_bloc.dart';
+import 'package:medico/pages/insurance_page.dart';
 import 'package:medico/pages/order_success_page.dart';
 import 'package:medico/pages/physiotherapy_speciality_page.dart';
 import 'package:medico/services/api_client.dart';
@@ -117,11 +118,22 @@ class HealthAssistPage extends StatelessWidget {
                               context,
                               MaterialPageRoute(
                                 builder: (_) => PhysiotherapySpecialistPage(
-                                    bloc: bloc, user: user),
+                                  bloc: bloc,
+                                  user: user,
+                                ),
                               ),
                             );
                           } else {
                             // insurance
+                            Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                builder: (_) => InsurancePage(
+                                  bloc: bloc,
+                                  user: user,
+                                ),
+                              ),
+                            );
                           }
                         },
                         title: Text(

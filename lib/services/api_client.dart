@@ -4,6 +4,7 @@ import 'package:dio/dio.dart';
 import 'package:medico/models/cart.dart';
 import 'package:medico/models/diagnolotic.dart';
 import 'package:medico/models/doctors.dart';
+import 'package:medico/models/insurance.dart';
 import 'package:medico/models/medicines.dart';
 import 'package:medico/models/physiotherapy_speciality.dart';
 import 'package:medico/models/server_success.dart';
@@ -52,4 +53,7 @@ abstract class ApiClient {
 
   @GET('/healthassist/physiotherapyspecialities')
   Future<List<PhysiotherapySpeciality>> getPhysiotherapySpecialities();
+
+  @GET('/healthassist/insurances')
+  Future<List<Insurance>> getInsurances();
 }

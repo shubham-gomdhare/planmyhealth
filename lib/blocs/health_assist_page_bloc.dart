@@ -1,6 +1,7 @@
 import 'dart:async';
 
 import 'package:flutter/cupertino.dart';
+import 'package:medico/models/insurance.dart';
 import 'package:medico/models/physiotherapy_speciality.dart';
 import 'package:medico/services/health_assist_use_case.dart';
 import 'package:medico/util/server_model.dart';
@@ -14,6 +15,7 @@ class HealthAssistPageBloc {
   final _inAsyncCallController = BehaviorSubject<bool>();
   final _physiotherapySpecialitiesController =
       BehaviorSubject<ServerModel<List<PhysiotherapySpeciality>>>();
+  final _insurancesController = BehaviorSubject<ServerModel<List<Insurance>>>();
 
   void bookHealthAssist(
       {@required String type,
@@ -35,13 +37,20 @@ class HealthAssistPageBloc {
         .add(await useCase.getPhysiotherapySpecialities());
   }
 
+  void getInsurances() async {
+    _insurancesController.add(await useCase.getInsurances());
+  }
+
   Stream<bool> get inAsyncCall => _inAsyncCallController.stream;
   Stream<ServerModel<List<PhysiotherapySpeciality>>>
       get physiotherapySpecialitiesStream =>
           _physiotherapySpecialitiesController.stream;
+  Stream<ServerModel<List<Insurance>>> get insurancesStream =>
+      _insurancesController.stream;
 
   void dispose() {
     _physiotherapySpecialitiesController.close();
+    _insurancesController.close();
     _inAsyncCallController.close();
   }
 }

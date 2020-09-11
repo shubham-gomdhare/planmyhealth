@@ -1,4 +1,5 @@
 import 'package:flutter/foundation.dart';
+import 'package:medico/models/insurance.dart';
 import 'package:medico/models/physiotherapy_speciality.dart';
 import 'package:medico/models/server_success.dart';
 import 'package:medico/services/api_client.dart';
@@ -29,6 +30,17 @@ class HealthAssistUseCase {
     List<PhysiotherapySpeciality> response;
     try {
       response = await _apiClient.getPhysiotherapySpecialities();
+    } catch (error, stacktrace) {
+      print("Exception occurred: $error stackTrace: $stacktrace");
+      return ServerModel()..setException(ServerError.withError(error: error));
+    }
+    return ServerModel()..data = response;
+  }
+
+  Future<ServerModel<List<Insurance>>> getInsurances() async {
+    List<Insurance> response;
+    try {
+      response = await _apiClient.getInsurances();
     } catch (error, stacktrace) {
       print("Exception occurred: $error stackTrace: $stacktrace");
       return ServerModel()..setException(ServerError.withError(error: error));
