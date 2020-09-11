@@ -5,6 +5,7 @@ import 'package:medico/models/cart.dart';
 import 'package:medico/models/diagnolotic.dart';
 import 'package:medico/models/doctors.dart';
 import 'package:medico/models/medicines.dart';
+import 'package:medico/models/physiotherapy_speciality.dart';
 import 'package:medico/models/server_success.dart';
 import 'package:retrofit/retrofit.dart';
 
@@ -48,4 +49,7 @@ abstract class ApiClient {
     @Query('id') String id,
     @Query('type') String type,
   );
+
+  @GET('/healthassist/physiotherapyspecialities')
+  Future<List<PhysiotherapySpeciality>> getPhysiotherapySpecialities();
 }

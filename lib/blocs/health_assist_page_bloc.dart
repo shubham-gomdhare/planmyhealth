@@ -1,5 +1,9 @@
+import 'dart:async';
+
 import 'package:flutter/cupertino.dart';
+import 'package:medico/models/physiotherapy_speciality.dart';
 import 'package:medico/services/health_assist_use_case.dart';
+import 'package:medico/util/server_model.dart';
 import 'package:rxdart/rxdart.dart';
 
 class HealthAssistPageBloc {
@@ -8,8 +12,10 @@ class HealthAssistPageBloc {
   HealthAssistPageBloc(this.useCase);
 
   final _inAsyncCallController = BehaviorSubject<bool>();
+  final _physiotherapySpecialitiesController =
+      BehaviorSubject<ServerModel<List<PhysiotherapySpeciality>>>();
 
-  void bookHomeHealthCare(
+  void bookHealthAssist(
       {@required String type,
       @required String userId,
       String id = "",
@@ -24,9 +30,18 @@ class HealthAssistPageBloc {
     _inAsyncCallController.add(false);
   }
 
-  Stream get inAsyncCall => _inAsyncCallController.stream;
+  void getSpecialist() async {
+    _physiotherapySpecialitiesController
+        .add(await useCase.getPhysiotherapySpecialities());
+  }
+
+  Stream<bool> get inAsyncCall => _inAsyncCallController.stream;
+  Stream<ServerModel<List<PhysiotherapySpeciality>>>
+      get physiotherapySpecialitiesStream =>
+          _physiotherapySpecialitiesController.stream;
 
   void dispose() {
+    _physiotherapySpecialitiesController.close();
     _inAsyncCallController.close();
   }
 }

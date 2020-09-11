@@ -206,4 +206,25 @@ class _ApiClient implements ApiClient {
     final value = ServerSuccess.fromJson(_result.data);
     return value;
   }
+
+  @override
+  getPhysiotherapySpecialities() async {
+    const _extra = <String, dynamic>{};
+    final queryParameters = <String, dynamic>{};
+    final _data = <String, dynamic>{};
+    final Response<List<dynamic>> _result = await _dio.request(
+        '/healthassist/physiotherapyspecialities',
+        queryParameters: queryParameters,
+        options: RequestOptions(
+            method: 'GET',
+            headers: <String, dynamic>{},
+            extra: _extra,
+            baseUrl: baseUrl),
+        data: _data);
+    var value = _result.data
+        .map((dynamic i) =>
+            PhysiotherapySpeciality.fromJson(i as Map<String, dynamic>))
+        .toList();
+    return value;
+  }
 }

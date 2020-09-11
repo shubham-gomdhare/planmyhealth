@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:medico/blocs/health_assist_page_bloc.dart';
 import 'package:medico/pages/order_success_page.dart';
+import 'package:medico/pages/physiotherapy_speciality_page.dart';
 import 'package:medico/services/api_client.dart';
 import 'package:medico/services/auth.dart';
 import 'package:medico/services/health_assist_use_case.dart';
@@ -82,7 +83,7 @@ class HealthAssistPage extends StatelessWidget {
                         children: subTitles
                             .map(
                               (e) => GestureDetector(
-                                onTap: () => bloc.bookHomeHealthCare(
+                                onTap: () => bloc.bookHealthAssist(
                                   type: e,
                                   userId: user.uid,
                                   onSuccess: (response) {
@@ -112,6 +113,13 @@ class HealthAssistPage extends StatelessWidget {
                             // assistance
                           } else if (pos == 2) {
                             // specialist
+                            Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                builder: (_) => PhysiotherapySpecialistPage(
+                                    bloc: bloc, user: user),
+                              ),
+                            );
                           } else {
                             // insurance
                           }
