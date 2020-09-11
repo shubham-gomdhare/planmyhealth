@@ -6,6 +6,7 @@ import 'package:medico/models/doctors.dart';
 import 'package:medico/pages/book-test-online1.dart';
 import 'package:medico/pages/conversations.dart' as prefix0;
 import 'package:medico/pages/doctors.dart';
+import 'package:medico/pages/health_assist_page.dart';
 import 'package:medico/pages/medicines.dart';
 import 'package:medico/services/api_client.dart';
 import 'package:medico/services/auth.dart';
@@ -259,7 +260,18 @@ class _HomeState extends State<Home> with SingleTickerProviderStateMixin {
                                 imageAsset: 'images/microscope.png',
                                 title: 'Assist',
                                 subtitle: 'Health Assist',
-                                onPressed: () {},
+                                onPressed: () {
+                                  Navigator.push(
+                                    context,
+                                    MaterialPageRoute(
+                                      builder: (context) =>
+                                          HealthAssistPage.create(
+                                        context,
+                                        user,
+                                      ),
+                                    ),
+                                  );
+                                },
                               ),
                             ],
                           ),

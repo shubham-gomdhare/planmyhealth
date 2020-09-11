@@ -9,7 +9,7 @@ part of 'api_client.dart';
 class _ApiClient implements ApiClient {
   _ApiClient(this._dio, {this.baseUrl}) {
     ArgumentError.checkNotNull(_dio, '_dio');
-    this.baseUrl ??= 'http://192.168.1.100:8080';
+    this.baseUrl ??= 'http://192.168.1.4:8080';
   }
 
   final Dio _dio;
@@ -171,6 +171,31 @@ class _ApiClient implements ApiClient {
     final _data = <String, dynamic>{};
     final Response<Map<String, dynamic>> _result = await _dio.request(
         '/doctors/book',
+        queryParameters: queryParameters,
+        options: RequestOptions(
+            method: 'POST',
+            headers: <String, dynamic>{},
+            extra: _extra,
+            baseUrl: baseUrl),
+        data: _data);
+    final value = ServerSuccess.fromJson(_result.data);
+    return value;
+  }
+
+  @override
+  bookHealthAssist(userId, id, type) async {
+    ArgumentError.checkNotNull(userId, 'userId');
+    ArgumentError.checkNotNull(id, 'id');
+    ArgumentError.checkNotNull(type, 'type');
+    const _extra = <String, dynamic>{};
+    final queryParameters = <String, dynamic>{
+      r'userId': userId,
+      r'id': id,
+      r'type': type
+    };
+    final _data = <String, dynamic>{};
+    final Response<Map<String, dynamic>> _result = await _dio.request(
+        '/healthassist/book',
         queryParameters: queryParameters,
         options: RequestOptions(
             method: 'POST',
