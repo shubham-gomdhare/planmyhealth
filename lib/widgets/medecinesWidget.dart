@@ -32,6 +32,7 @@ class MedicinesWidget extends StatelessWidget {
                     'AlternateBrands',
                     medicine.alternateBrand,
                   ],
+                  null,
                 ),
               ),
             );

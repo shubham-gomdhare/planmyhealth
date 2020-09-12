@@ -25,14 +25,10 @@ class HealthAssistPageBloc {
       @required String userId,
       String id = "",
       @required Function(String) onSuccess}) async {
-    _inAsyncCallController.add(true);
-
     final result =
         await useCase.bookHealthAssist(userId: userId, type: type, id: id);
 
     onSuccess(result.data.message);
-
-    _inAsyncCallController.add(false);
   }
 
   void getSpecialist() async {

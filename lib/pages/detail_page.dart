@@ -2,12 +2,14 @@ import 'package:flutter/material.dart';
 
 class DetailPage extends StatelessWidget {
   final List<String> detailingList;
+  final VoidCallback book;
 
-  DetailPage(this.detailingList);
+  DetailPage(this.detailingList, this.book);
 
   @override
   Widget build(BuildContext context) {
     detailingList.insert(0, "");
+    if (book != null) detailingList.insert(detailingList.length, "");
     return Scaffold(
       appBar: AppBar(
         elevation: 0,
@@ -36,6 +38,7 @@ class DetailPage extends StatelessWidget {
           elevation: 5.0,
           child: ListView.builder(
             itemCount: detailingList.length,
+            shrinkWrap: true,
             itemBuilder: (context, pos) {
               if (pos == 0)
                 return Image.asset(
@@ -43,6 +46,31 @@ class DetailPage extends StatelessWidget {
                   height: 250.0,
                   width: double.infinity,
                   fit: BoxFit.cover,
+                );
+              if (book != null && pos == detailingList.length - 1)
+                return Container(
+                  margin: EdgeInsets.only(top: 10.0, bottom: 10.0),
+                  padding: EdgeInsets.symmetric(horizontal: 50.0),
+                  child: RaisedButton(
+                    onPressed: book,
+                    shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(20.0),
+                    ),
+                    color: Theme.of(context).accentColor,
+                    child: Container(
+                      margin: EdgeInsets.only(
+                          left: 40.0, right: 45.0, top: 12, bottom: 12),
+                      child: Text(
+                        'Book',
+                        style: TextStyle(
+                          fontFamily: 'Poppins',
+                          fontSize: 12.0,
+                          color: Theme.of(context).primaryColor,
+                          fontWeight: FontWeight.bold,
+                        ),
+                      ),
+                    ),
+                  ),
                 );
               return pos % 2 != 0
                   ? _heading(text: detailingList[pos])
@@ -56,7 +84,9 @@ class DetailPage extends StatelessWidget {
 
   Widget _heading({@required String text}) {
     return Container(
-      margin: EdgeInsets.symmetric(vertical: 2.0, horizontal: 15.0),
+      margin: text == 'Name'
+          ? EdgeInsets.only(top: 10.0, bottom: 2.0, left: 15.0, right: 15.0)
+          : EdgeInsets.symmetric(vertical: 2.0, horizontal: 15.0),
       child: Text(
         text,
         style: TextStyle(fontSize: 20.0, fontWeight: FontWeight.bold),

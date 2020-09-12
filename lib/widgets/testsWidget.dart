@@ -22,6 +22,7 @@ class Tests extends StatelessWidget {
                     'Price',
                     diagnolotic.rate.toString(),
                   ],
+                  null,
                 ),
               ),
             );

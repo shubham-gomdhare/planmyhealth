@@ -6,6 +6,8 @@ import 'package:medico/services/auth.dart';
 import 'package:medico/util/server_model.dart';
 import 'package:modal_progress_hud/modal_progress_hud.dart';
 
+import 'order_success_page.dart';
+
 class InsurancePage extends StatelessWidget {
   final HealthAssistPageBloc bloc;
   final User user;
@@ -74,33 +76,33 @@ class InsurancePage extends StatelessWidget {
                         Navigator.push(
                           context,
                           MaterialPageRoute(
-                            builder: (_) => DetailPage(
-                              [
-                                'Name',
-                                insuranceCompany.insuranceCo,
-                                'Insurance Code',
-                                insuranceCompany.insCode,
-                                'Insurance Type',
-                                insuranceCompany.insType,
-                                'Address',
-                                insuranceCompany.address1,
-                              ],
-                            ),
+                            builder: (_) => DetailPage([
+                              'Name',
+                              insuranceCompany.insuranceCo,
+                              'Insurance Code',
+                              insuranceCompany.insCode,
+                              'Insurance Type',
+                              insuranceCompany.insType,
+                              'Address',
+                              insuranceCompany.address1,
+                            ], () {
+                              bloc.bookHealthAssist(
+                                type: 'Insurance',
+                                userId: user.uid,
+                                id: result[index].mongoId,
+                                onSuccess: (response) {
+                                  Navigator.push(
+                                    context,
+                                    MaterialPageRoute(
+                                      builder: (_) =>
+                                          OrderSuccessPage(response),
+                                    ),
+                                  );
+                                },
+                              );
+                            }),
                           ),
                         );
-                        // bloc.bookHealthAssist(
-                        //   type: 'Insurance',
-                        //   userId: user.uid,
-                        //   id: result[index].mongoId,
-                        //   onSuccess: (response) {
-                        //     Navigator.push(
-                        //       context,
-                        //       MaterialPageRoute(
-                        //         builder: (_) => OrderSuccessPage(response),
-                        //       ),
-                        //     );
-                        //   },
-                        // );
                       },
                       title: Text(
                         insuranceCompany.insuranceCo,
