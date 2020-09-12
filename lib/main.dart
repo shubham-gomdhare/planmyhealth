@@ -6,8 +6,6 @@ import 'package:medico/services/api_client.dart';
 import 'package:medico/services/auth.dart';
 import 'package:provider/provider.dart';
 
-//Navigator.of(context).pushNamed('/thirdBookTest')
-
 void main() => runApp(MyApp());
 
 class MyApp extends StatelessWidget {

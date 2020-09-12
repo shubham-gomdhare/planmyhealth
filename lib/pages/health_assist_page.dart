@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:medico/blocs/health_assist_page_bloc.dart';
+import 'package:medico/pages/hospitalization_assistance_page.dart';
 import 'package:medico/pages/insurance_page.dart';
 import 'package:medico/pages/order_success_page.dart';
 import 'package:medico/pages/physiotherapy_speciality_page.dart';
@@ -112,6 +113,15 @@ class HealthAssistPage extends StatelessWidget {
                         onTap: () {
                           if (pos == 1) {
                             // assistance
+                            Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                builder: (_) => HospitalizationAssistancePage(
+                                  bloc: bloc,
+                                  user: user,
+                                ),
+                              ),
+                            );
                           } else if (pos == 2) {
                             // specialist
                             Navigator.push(

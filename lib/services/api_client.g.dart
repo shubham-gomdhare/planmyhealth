@@ -9,7 +9,8 @@ part of 'api_client.dart';
 class _ApiClient implements ApiClient {
   _ApiClient(this._dio, {this.baseUrl}) {
     ArgumentError.checkNotNull(_dio, '_dio');
-    this.baseUrl ??= 'http://192.168.1.4:8080';
+    this.baseUrl ??=
+        'http://ec2-18-216-148-49.us-east-2.compute.amazonaws.com:8080';
   }
 
   final Dio _dio;
@@ -244,6 +245,27 @@ class _ApiClient implements ApiClient {
         data: _data);
     var value = _result.data
         .map((dynamic i) => Insurance.fromJson(i as Map<String, dynamic>))
+        .toList();
+    return value;
+  }
+
+  @override
+  getHospitalizationAssistance() async {
+    const _extra = <String, dynamic>{};
+    final queryParameters = <String, dynamic>{};
+    final _data = <String, dynamic>{};
+    final Response<List<dynamic>> _result = await _dio.request(
+        '/healthassist/treatment&medicines',
+        queryParameters: queryParameters,
+        options: RequestOptions(
+            method: 'GET',
+            headers: <String, dynamic>{},
+            extra: _extra,
+            baseUrl: baseUrl),
+        data: _data);
+    var value = _result.data
+        .map((dynamic i) =>
+            TreatmentMedicine.fromJson(i as Map<String, dynamic>))
         .toList();
     return value;
   }

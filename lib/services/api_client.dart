@@ -9,12 +9,15 @@ import 'package:medico/models/medicines.dart';
 import 'package:medico/models/order.dart';
 import 'package:medico/models/physiotherapy_speciality.dart';
 import 'package:medico/models/server_success.dart';
+import 'package:medico/models/treatment_medicine.dart';
 import 'package:retrofit/retrofit.dart';
 
 part 'api_client.g.dart';
 
-// "http://ec2-18-216-148-49.us-east-2.compute.amazonaws.com
-@RestApi(baseUrl: "http://192.168.1.4:8080")
+// http://ec2-18-216-148-49.us-east-2.compute.amazonaws.com
+// http://192.168.1.4
+@RestApi(
+    baseUrl: "http://ec2-18-216-148-49.us-east-2.compute.amazonaws.com:8080")
 abstract class ApiClient {
   factory ApiClient(Dio dio, {String baseUrl}) = _ApiClient;
 
@@ -57,6 +60,9 @@ abstract class ApiClient {
 
   @GET('/healthassist/insurances')
   Future<List<Insurance>> getInsurances();
+
+  @GET('/healthassist/treatment&medicines')
+  Future<List<TreatmentMedicine>> getHospitalizationAssistance();
 
   @GET('/cart/orders')
   Future<List<Order>> getOrders(@Query('userId') String userId);
