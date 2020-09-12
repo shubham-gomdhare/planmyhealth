@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:intl/intl.dart';
 import 'package:medico/blocs/my_orders_bloc.dart';
 import 'package:medico/models/order.dart';
 import 'package:medico/services/api_client.dart';
@@ -79,14 +80,31 @@ class MyOrders extends StatelessWidget {
                   return Center(child: Text(error.getErrorMessage()));
                 if (result.isEmpty)
                   return Center(child: Text('No Orders has been placed yet'));
-                return ListView.builder(
+                return ListView.separated(
+                  padding: EdgeInsets.symmetric(vertical: 15),
+                  shrinkWrap: true,
+                  primary: false,
                   itemCount: result.length,
-                  itemBuilder: (context, pos) => ListTile(
-                    onTap: () {},
-                    title: Text(
-                      result[pos].mongoId,
-                    ),
-                  ),
+                  separatorBuilder: (context, index) {
+                    return SizedBox(
+                      height: 5.0,
+                      child: Center(
+                        child: Container(
+                          height: 1.0,
+                          color: Colors.grey.withOpacity(0.1),
+                        ),
+                      ),
+                    );
+                  },
+                  itemBuilder: (context, index) {
+                    final order = result[index];
+                    return ListTile(
+                      leading: Icon(Icons.calendar_today),
+                      title: Text('Order Id : ${order.mongoId}'),
+                      subtitle: Text(
+                          'Order placed at ${DateFormat('dd-MM-yy on hh:mm a').format(order.createdAt)}'),
+                    );
+                  },
                 );
               },
             ),
