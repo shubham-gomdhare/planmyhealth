@@ -9,6 +9,7 @@ class Insurance {
   final int id;
   final String insuranceCo;
   final String insCode;
+  final String insType;
   final String telAreaCode;
   final String telNo;
   final String faxNo;
@@ -35,6 +36,7 @@ class Insurance {
     this.id,
     this.insuranceCo,
     this.insCode,
+    this.insType,
     this.telAreaCode,
     this.telNo,
     this.faxNo,
