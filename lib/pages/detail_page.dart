@@ -88,7 +88,7 @@ class DetailPage extends StatelessWidget {
           ? EdgeInsets.only(top: 10.0, bottom: 2.0, left: 15.0, right: 15.0)
           : EdgeInsets.symmetric(vertical: 2.0, horizontal: 15.0),
       child: Text(
-        text,
+        text == null || text.isEmpty ? 'Not Available' : text,
         style: TextStyle(fontSize: 20.0, fontWeight: FontWeight.bold),
       ),
     );
@@ -102,7 +102,7 @@ class DetailPage extends StatelessWidget {
         right: 15.0,
       ),
       child: Text(
-        text,
+        text == null || text.isEmpty ? 'Not Available' : text,
         style: TextStyle(fontSize: 16.0, color: Colors.grey.shade600),
         textAlign: TextAlign.justify,
       ),
