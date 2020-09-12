@@ -16,9 +16,14 @@ class MedicinesWidget extends StatelessWidget {
               context,
               MaterialPageRoute(
                 builder: (_) => DetailPage(
-                  medicine.drugName,
-                  medicine.introduction,
-                  medicine.price,
+                  [
+                    'Name',
+                    medicine.drugName,
+                    'Price',
+                    medicine.price.toString(),
+                    'Description',
+                    medicine.introduction,
+                  ],
                 ),
               ),
             );

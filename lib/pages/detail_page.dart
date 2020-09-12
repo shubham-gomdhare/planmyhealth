@@ -1,14 +1,13 @@
 import 'package:flutter/material.dart';
 
 class DetailPage extends StatelessWidget {
-  final String name;
-  final String desc;
-  final double price;
+  final List<String> detailingList;
 
-  DetailPage(this.name, this.desc, this.price);
+  DetailPage(this.detailingList);
 
   @override
   Widget build(BuildContext context) {
+    detailingList.insert(0, "");
     return Scaffold(
       appBar: AppBar(
         elevation: 0,
@@ -32,38 +31,50 @@ class DetailPage extends StatelessWidget {
       body: Container(
         width: MediaQuery.of(context).size.width,
         height: MediaQuery.of(context).size.height,
-        padding: EdgeInsets.symmetric(horizontal: 8.0),
-        child: SingleChildScrollView(
-          child: Column(
-            mainAxisSize: MainAxisSize.max,
-            children: [
-              Image.asset(
-                'images/asset-1.png',
-                height: 250.0,
-              ),
-              Container(
-                child: Text(
-                  name,
-                  style: TextStyle(fontSize: 20.0, fontWeight: FontWeight.bold),
-                ),
-              ),
-              Container(
-                margin: EdgeInsets.symmetric(vertical: 10.0),
-                child: Text(
-                  'Rs.$price',
-                  style: TextStyle(fontSize: 18.0, fontWeight: FontWeight.bold),
-                ),
-              ),
-              Container(
-                child: Text(
-                  desc,
-                  style: TextStyle(fontSize: 18.0),
-                  textAlign: TextAlign.justify,
-                ),
-              ),
-            ],
+        margin: EdgeInsets.symmetric(horizontal: 15.0, vertical: 15.0),
+        child: Card(
+          elevation: 5.0,
+          child: ListView.builder(
+            itemCount: detailingList.length,
+            itemBuilder: (context, pos) {
+              if (pos == 0)
+                return Image.asset(
+                  'images/asset-1.png',
+                  height: 250.0,
+                  width: double.infinity,
+                  fit: BoxFit.cover,
+                );
+              return pos % 2 != 0
+                  ? _heading(text: detailingList[pos])
+                  : _matter(text: detailingList[pos]);
+            },
           ),
         ),
+      ),
+    );
+  }
+
+  Widget _heading({@required String text}) {
+    return Container(
+      margin: EdgeInsets.symmetric(vertical: 2.0, horizontal: 15.0),
+      child: Text(
+        text,
+        style: TextStyle(fontSize: 20.0, fontWeight: FontWeight.bold),
+      ),
+    );
+  }
+
+  Widget _matter({@required String text}) {
+    return Container(
+      margin: EdgeInsets.only(
+        bottom: 10.0,
+        left: 15.0,
+        right: 15.0,
+      ),
+      child: Text(
+        text,
+        style: TextStyle(fontSize: 16.0, color: Colors.grey.shade600),
+        textAlign: TextAlign.justify,
       ),
     );
   }
