@@ -102,7 +102,15 @@ class MyOrders extends StatelessWidget {
                       leading: Icon(Icons.calendar_today),
                       title: Text('Order Id : ${order.mongoId}'),
                       subtitle: Text(
-                          'Order placed at ${DateFormat('dd-MM-yy on hh:mm a').format(order.createdAt)}'),
+                        'Order placed at ${DateFormat('dd-MM-yy on hh:mm a').format(
+                          order.createdAt.add(
+                            Duration(
+                              hours: 5,
+                              minutes: 30,
+                            ),
+                          ),
+                        )}',
+                      ),
                     );
                   },
                 );
