@@ -162,41 +162,15 @@ class _HomeState extends State<Home> with SingleTickerProviderStateMixin {
                                     ),
                                   ),
                                   Expanded(
-                                    child: GestureDetector(
-                                      onTap: () {
-                                        showDialog(
-                                          context: context,
-                                          child: AlertDialog(
-                                            title: Text('Logout'),
-                                            content: Text(
-                                                'Are you sure to logout from this device'),
-                                            actions: [
-                                              FlatButton(
-                                                onPressed: () =>
-                                                    Navigator.pop(context),
-                                                child: Text('No'),
-                                              ),
-                                              FlatButton(
-                                                onPressed: () {
-                                                  auth.signOut();
-                                                  Navigator.pop(context);
-                                                },
-                                                child: Text('Logout'),
-                                              ),
-                                            ],
-                                          ),
-                                        );
-                                      },
-                                      child: Text(
-                                        'Hi ${user.name == null || user.name.isEmpty ? user.phoneNumber : user.name}',
-                                        style: TextStyle(
-                                          fontFamily: 'Poppins',
-                                          fontSize: 16.0,
-                                          color: Theme.of(context).primaryColor,
-                                        ),
-                                        overflow: TextOverflow.ellipsis,
-                                        textAlign: TextAlign.end,
+                                    child: Text(
+                                      'Hi ${user.name == null || user.name.isEmpty ? user.phoneNumber : user.name}',
+                                      style: TextStyle(
+                                        fontFamily: 'Poppins',
+                                        fontSize: 16.0,
+                                        color: Theme.of(context).primaryColor,
                                       ),
+                                      overflow: TextOverflow.ellipsis,
+                                      textAlign: TextAlign.end,
                                     ),
                                   ),
                                 ],

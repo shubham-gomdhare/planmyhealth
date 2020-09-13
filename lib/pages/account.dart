@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:medico/pages/my_orders_page.dart';
 import 'package:medico/services/auth.dart';
+import 'package:provider/provider.dart';
 
 class AccountWidget extends StatelessWidget {
   final User user;
@@ -219,6 +220,28 @@ class AccountWidget extends StatelessWidget {
               context,
               MaterialPageRoute(
                 builder: (_) => MyOrders.create(context, user),
+              ),
+            );
+          }
+          if (route.isEmpty) {
+            showDialog(
+              context: context,
+              child: AlertDialog(
+                title: Text('Logout'),
+                content: Text('Are you sure to logout from this device'),
+                actions: [
+                  FlatButton(
+                    onPressed: () => Navigator.pop(context),
+                    child: Text('No'),
+                  ),
+                  FlatButton(
+                    onPressed: () {
+                      Provider.of<AuthBase>(context, listen: false).signOut();
+                      Navigator.pop(context);
+                    },
+                    child: Text('Logout'),
+                  ),
+                ],
               ),
             );
           } else {
