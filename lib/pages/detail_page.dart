@@ -42,7 +42,7 @@ class DetailPage extends StatelessWidget {
             itemBuilder: (context, pos) {
               if (pos == 0)
                 return Image.asset(
-                  'images/asset-1.png',
+                  'images/doctor-3.jpg',
                   height: 250.0,
                   width: double.infinity,
                   fit: BoxFit.cover,

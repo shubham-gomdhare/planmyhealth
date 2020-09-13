@@ -76,8 +76,8 @@ class DoctorBookSecondeStep extends StatelessWidget {
                                 mainAxisAlignment:
                                     MainAxisAlignment.spaceAround,
                                 children: <Widget>[
-                                  ball(
-                                      'images/asset-1.png', Colors.transparent),
+                                  ball('images/doctor-3.jpg',
+                                      Colors.transparent),
                                   Column(
                                     crossAxisAlignment:
                                         CrossAxisAlignment.start,

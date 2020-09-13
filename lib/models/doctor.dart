@@ -13,7 +13,7 @@ class Doctor {
   Doctor(this.name, this.description, this.avatar, this.state, this.color);
   Doctor getCurrentDoctor() {
     return Doctor("Dr.Alina james", "B.Sc DDVL Demilitologist",
-        "images/asset-1.png", "Closed To day", Colors.red);
+        "images/doctor-3.jpg", "Closed To day", Colors.red);
   }
 }
 
@@ -24,19 +24,19 @@ class DoctorsList {
       new Doctor(
           "Dr.Alina james",
           "B.Sc DDVL Demilitologist 26 years of experience",
-          "images/asset-1.png",
+          "images/doctor-3.jpg",
           "Closed To day",
           Colors.red),
       new Doctor(
           "Dr.Steve Robert",
           "B.Sc DDVL Demilitologist 26 years of experience",
-          "images/asset-2.png",
+          "images/doctor-1.jpg",
           "Open To day",
           Colors.green),
       new Doctor(
           "Dr.Steve Robert",
           "B.Sc DDVL Demilitologist 26 years of experience",
-          "images/asset-3.png",
+          "images/doctor-5.jpg",
           "Open To day",
           Colors.green),
       new Doctor(

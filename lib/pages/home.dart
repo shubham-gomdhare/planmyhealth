@@ -266,8 +266,7 @@ class _HomeState extends State<Home> with SingleTickerProviderStateMixin {
                                   color: Colors.grey.withOpacity(0.2)),
                               borderRadius: BorderRadius.circular(16.0),
                               image: DecorationImage(
-                                image: AssetImage(
-                                    'images/doctor-productivity.jpg'),
+                                image: AssetImage('images/doctor-3.jpg'),
                                 fit: BoxFit.cover,
                               ),
                             ),
@@ -282,7 +281,7 @@ class _HomeState extends State<Home> with SingleTickerProviderStateMixin {
                               borderRadius: BorderRadius.circular(16.0),
                               image: DecorationImage(
                                 image: AssetImage(
-                                  'images/13nov_resize.jpg',
+                                  'images/doctor-5.jpg',
                                 ),
                                 fit: BoxFit.cover,
                               ),
@@ -298,7 +297,7 @@ class _HomeState extends State<Home> with SingleTickerProviderStateMixin {
                               borderRadius: BorderRadius.circular(16.0),
                               image: DecorationImage(
                                 image: AssetImage(
-                                  'images/medical-lab-technician-85654102.jpg',
+                                  'images/doctor-2.jpg',
                                 ),
                                 fit: BoxFit.cover,
                               ),
@@ -352,11 +351,11 @@ class _HomeState extends State<Home> with SingleTickerProviderStateMixin {
                       child: ListView(
                         scrollDirection: Axis.horizontal,
                         children: <Widget>[
-                          card("images/asset-1.png", doctorsList[0].name,
+                          card("images/doctor-1.jpg", doctorsList[0].name,
                               doctorsList[0].qualification, "4.2", context),
-                          card("images/asset-2.png", doctorsList[1].name,
+                          card("images/doctor-2.jpg", doctorsList[1].name,
                               doctorsList[1].qualification, "3.6", context),
-                          card("images/asset-3.png", doctorsList[2].name,
+                          card("images/doctor-5.jpg", doctorsList[2].name,
                               doctorsList[2].qualification, "4.3", context),
                         ],
                       ),

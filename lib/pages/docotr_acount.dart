@@ -229,7 +229,7 @@ class DoctorAcount extends StatelessWidget {
                     ),
                     Center(
                         child: ball(
-                      'images/asset-1.png',
+                      'images/doctor-3.jpg',
                       Theme.of(context).primaryColor,
                     )),
                   ],
@@ -468,7 +468,7 @@ class DoctorAcount extends StatelessWidget {
                   ),
                   Column(
                     children: <Widget>[
-                      card("images/asset-2.png", "Dr.Mickel Nick",
+                      card("images/doctor-1.jpg", "Dr.Mickel Nick",
                           "B.Sc DDVL Demilitologist", "4.2"),
                       SizedBox(
                           height: 30.0,
@@ -478,7 +478,7 @@ class DoctorAcount extends StatelessWidget {
                               color: Colors.grey[350].withOpacity(0.1),
                             ),
                           )),
-                      card("images/asset-3.png", "Dr.Steve Robert",
+                      card("images/doctor-5.jpg", "Dr.Steve Robert",
                           "B.Sc DDVL Demilitologist", "3.6"),
                     ],
                   ),

@@ -49,7 +49,7 @@ class DoctorsCardWidget extends StatelessWidget {
                 Column(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: <Widget>[
-                    ball(isOpen ? "images/asset-1.png" : "images/asset-3.png",
+                    ball(isOpen ? "images/doctor-3.jpg" : "images/doctor-5.jpg",
                         Colors.transparent),
                     Text(
                       isOpen ? 'Open Today' : 'Closed Today',

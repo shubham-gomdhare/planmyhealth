@@ -35,7 +35,7 @@ class AccountWidget extends StatelessWidget {
                   child: Column(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: <Widget>[
-                      ball("images/imageuser.png", Colors.transparent),
+                      ball("images/doctor-2.jpg", Colors.transparent),
                       Column(
                         children: <Widget>[
                           Text(

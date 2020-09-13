@@ -13,10 +13,12 @@ class User {
 
   User.basic(this.name, this.phoneNumber);
 
-  User.advanced(this.name, this.gender, this.dateOfBirth, this.avatar,this.phoneNumber);
+  User.advanced(
+      this.name, this.gender, this.dateOfBirth, this.avatar, this.phoneNumber);
 
   User getCurrentUser() {
-    return User.advanced('Mathis Louise','Male', DateTime(1993, 12, 31),'images/imageuser.png',"494899650012");
+    return User.advanced('Mathis Louise', 'Male', DateTime(1993, 12, 31),
+        'images/doctor-2.jpg', "494899650012");
   }
 
   getDateOfBirth() {
