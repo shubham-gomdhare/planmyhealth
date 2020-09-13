@@ -12,17 +12,17 @@ import 'package:modal_progress_hud/modal_progress_hud.dart';
 import 'package:provider/provider.dart';
 
 const titles = [
-  'Home Healthcare',
-  'Hospitalization Assistance',
-  'Specialist',
-  'Health Insurance claim assistance',
+  'I want Hospitalization',
+  'Find Me a Specialist',
+  'Health Insurance claim',
+  'I want health at home',
 ];
 
-const subTitles = [
-  'Physiotherapy',
-  'Nurse',
-  'Paramedic',
-  'Aaya',
+const icons = [
+  Icons.local_hospital,
+  Icons.people,
+  Icons.healing,
+  Icons.home,
 ];
 
 class HealthAssistPage extends StatelessWidget {
@@ -77,42 +77,18 @@ class HealthAssistPage extends StatelessWidget {
                   ),
                 ),
               ),
-              body: ListView.builder(
-                itemCount: titles.length,
-                itemBuilder: (context, pos) => pos == 0
-                    ? ExpansionTile(
-                        title: Text(titles[pos]),
-                        children: subTitles
-                            .map(
-                              (e) => GestureDetector(
-                                onTap: () => bloc.bookHealthAssist(
-                                  type: e,
-                                  userId: user.uid,
-                                  onSuccess: (response) {
-                                    Navigator.push(
-                                      context,
-                                      MaterialPageRoute(
-                                        builder: (_) =>
-                                            OrderSuccessPage(response),
-                                      ),
-                                    );
-                                  },
-                                ),
-                                child: Container(
-                                  margin: EdgeInsets.symmetric(vertical: 5.0),
-                                  child: Text(
-                                    e,
-                                    style: TextStyle(fontSize: 16.0),
-                                  ),
-                                ),
-                              ),
-                            )
-                            .toList(),
-                      )
-                    : ListTile(
+              body: Center(
+                child: Container(
+                  margin: EdgeInsets.symmetric(horizontal: 50.0),
+                  child: ListView.builder(
+                    shrinkWrap: true,
+                    itemCount: titles.length,
+                    itemBuilder: (context, pos) => Card(
+                      elevation: 5.0,
+                      child: ListTile(
                         onTap: () {
-                          if (pos == 1) {
-                            // assistance
+                          if (pos == 0) {
+                            // hospitalization
                             Navigator.push(
                               context,
                               MaterialPageRoute(
@@ -122,7 +98,7 @@ class HealthAssistPage extends StatelessWidget {
                                 ),
                               ),
                             );
-                          } else if (pos == 2) {
+                          } else if (pos == 1) {
                             // specialist
                             Navigator.push(
                               context,
@@ -133,7 +109,7 @@ class HealthAssistPage extends StatelessWidget {
                                 ),
                               ),
                             );
-                          } else {
+                          } else if (pos == 2) {
                             // insurance
                             Navigator.push(
                               context,
@@ -144,12 +120,22 @@ class HealthAssistPage extends StatelessWidget {
                                 ),
                               ),
                             );
+                          } else {
+                            // home health
+
                           }
                         },
+                        leading: Icon(
+                          icons[pos],
+                          color: Theme.of(context).accentColor,
+                        ),
                         title: Text(
                           titles[pos],
                         ),
                       ),
+                    ),
+                  ),
+                ),
               ),
             ),
           );
