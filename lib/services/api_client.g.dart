@@ -288,4 +288,25 @@ class _ApiClient implements ApiClient {
         .toList();
     return value;
   }
+
+  @override
+  getDoctorAppointments(userId) async {
+    ArgumentError.checkNotNull(userId, 'userId');
+    const _extra = <String, dynamic>{};
+    final queryParameters = <String, dynamic>{r'userId': userId};
+    final _data = <String, dynamic>{};
+    final Response<List<dynamic>> _result = await _dio.request(
+        '/cart/appointments',
+        queryParameters: queryParameters,
+        options: RequestOptions(
+            method: 'GET',
+            headers: <String, dynamic>{},
+            extra: _extra,
+            baseUrl: baseUrl),
+        data: _data);
+    var value = _result.data
+        .map((dynamic i) => Order.fromJson(i as Map<String, dynamic>))
+        .toList();
+    return value;
+  }
 }

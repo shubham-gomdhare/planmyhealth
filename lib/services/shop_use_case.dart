@@ -92,4 +92,16 @@ class ShopUseCase {
     }
     return ServerModel()..data = response;
   }
+
+  Future<ServerModel<List<Order>>> getDoctorAppointments(
+      {@required String userId}) async {
+    List<Order> response;
+    try {
+      response = await apiService.getDoctorAppointments(userId);
+    } catch (error, stacktrace) {
+      print("Exception occurred: $error stackTrace: $stacktrace");
+      return ServerModel()..setException(ServerError.withError(error: error));
+    }
+    return ServerModel()..data = response;
+  }
 }

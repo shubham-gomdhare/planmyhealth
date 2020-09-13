@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:medico/pages/Welcome.dart';
-import 'package:medico/pages/appointment.dart';
 import 'package:medico/pages/book-test-online3.dart';
 import 'package:medico/pages/book-test-online4.dart';
 import 'package:medico/pages/chat.dart';
@@ -66,8 +65,8 @@ class RouteGenerator {
 //        return MaterialPageRoute(builder: (_) => CartPage(null, null));
       case '/mydoctors':
         return MaterialPageRoute(builder: (_) => MyDoctorsList());
-      case '/appointment':
-        return MaterialPageRoute(builder: (_) => AppointmentsList());
+      // case '/appointment':
+      //   return MaterialPageRoute(builder: (_) => AppointmentsList());
       case '/health':
         return MaterialPageRoute(builder: (_) => HealthTips());
 

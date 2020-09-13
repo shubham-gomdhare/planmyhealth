@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:medico/pages/my_appointments_page.dart';
 import 'package:medico/pages/my_orders_page.dart';
 import 'package:medico/services/auth.dart';
 import 'package:provider/provider.dart';
@@ -195,7 +196,7 @@ class AccountWidget extends StatelessWidget {
                     ),
                     'Logout',
                     0,
-                    '',
+                    '/logout',
                     context),
               ],
             ),
@@ -222,8 +223,7 @@ class AccountWidget extends StatelessWidget {
                 builder: (_) => MyOrders.create(context, user),
               ),
             );
-          }
-          if (route.isEmpty) {
+          } else if (route == '/logout') {
             showDialog(
               context: context,
               child: AlertDialog(
@@ -242,6 +242,13 @@ class AccountWidget extends StatelessWidget {
                     child: Text('Logout'),
                   ),
                 ],
+              ),
+            );
+          } else if (route == '/appointment') {
+            Navigator.push(
+              context,
+              MaterialPageRoute(
+                builder: (_) => MyAppointmentsPage.create(context, user),
               ),
             );
           } else {

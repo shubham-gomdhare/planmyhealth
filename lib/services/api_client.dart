@@ -65,4 +65,7 @@ abstract class ApiClient {
 
   @GET('/cart/orders')
   Future<List<Order>> getOrders(@Query('userId') String userId);
+
+  @GET('/cart/appointments')
+  Future<List<Order>> getDoctorAppointments(@Query('userId') String userId);
 }

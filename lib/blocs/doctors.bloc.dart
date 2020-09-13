@@ -97,7 +97,6 @@ class DoctorBloc {
       @required Function(String) onCheckoutCompleted}) async {
     _inAsyncCallController.add(true);
 
-    print(_bookingDateTime.millisecondsSinceEpoch);
     ServerModel<ServerSuccess> serverModel = await doctorUseCase.bookDoctor(
       userId: userId,
       doctorId: doctorId,

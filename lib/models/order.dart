@@ -10,6 +10,7 @@ class Order {
   final String name;
   final double price;
   final String type;
+  final DateTime bookedAt;
   final DateTime updatedAt;
   final DateTime createdAt;
 
@@ -19,6 +20,7 @@ class Order {
     this.name,
     this.price,
     this.type,
+    this.bookedAt,
     this.updatedAt,
     this.createdAt,
   });
