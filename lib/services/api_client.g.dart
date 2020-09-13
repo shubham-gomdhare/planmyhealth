@@ -309,4 +309,27 @@ class _ApiClient implements ApiClient {
         .toList();
     return value;
   }
+
+  @override
+  getMemberDetail(mobileNumber, email) async {
+    ArgumentError.checkNotNull(mobileNumber, 'mobileNumber');
+    ArgumentError.checkNotNull(email, 'email');
+    const _extra = <String, dynamic>{};
+    final queryParameters = <String, dynamic>{
+      r'mobileNumber': mobileNumber,
+      r'email': email
+    };
+    final _data = <String, dynamic>{};
+    final Response<Map<String, dynamic>> _result = await _dio.request(
+        '/getmember',
+        queryParameters: queryParameters,
+        options: RequestOptions(
+            method: 'GET',
+            headers: <String, dynamic>{},
+            extra: _extra,
+            baseUrl: baseUrl),
+        data: _data);
+    final value = Member.fromJson(_result.data);
+    return value;
+  }
 }

@@ -19,7 +19,7 @@ class ConversationList {
         new Chat.init().getChat(),
       ),
       new Conversation.advanced(
-        "images/asset-6.png",
+        "images/doctor-2.jpg",
         'Dr.Nemeli Aaraf',
         new Chat.init().getChat(),
       ),

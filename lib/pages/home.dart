@@ -58,7 +58,7 @@ class _HomeState extends State<Home> with SingleTickerProviderStateMixin {
       case 1:
         return prefix0.Conversation();
       case 2:
-        return AccountWidget(user);
+        return AccountWidget.create(context, user);
       default:
         return homeWidget();
     }

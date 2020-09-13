@@ -54,7 +54,7 @@ class DoctorsList {
       new Doctor(
           "Dr.Nemeli Aaraf",
           "B.Sc DDVL Demilitologist 26 years of experience",
-          "images/asset-6.png",
+          "images/doctor-3.jpg",
           "Closed To day",
           Colors.green),
     ];

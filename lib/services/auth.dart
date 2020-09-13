@@ -8,11 +8,13 @@ import 'package:google_sign_in/google_sign_in.dart';
 class User {
   final String uid;
   final String name;
+  final String email;
   final String phoneNumber;
 
   User({
     @required this.uid,
     @required this.name,
+    @required this.email,
     @required this.phoneNumber,
   });
 }
@@ -45,6 +47,7 @@ class Auth implements AuthBase {
     return User(
       uid: firebaseUser.uid,
       name: firebaseUser.displayName,
+      email: firebaseUser.email,
       phoneNumber: firebaseUser.phoneNumber,
     );
   }

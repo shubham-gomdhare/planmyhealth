@@ -6,6 +6,7 @@ import 'package:medico/models/diagnostic.dart';
 import 'package:medico/models/doctors.dart';
 import 'package:medico/models/insurance.dart';
 import 'package:medico/models/medicines.dart';
+import 'package:medico/models/member.dart';
 import 'package:medico/models/order.dart';
 import 'package:medico/models/physiotherapy_speciality.dart';
 import 'package:medico/models/server_success.dart';
@@ -68,4 +69,8 @@ abstract class ApiClient {
 
   @GET('/cart/appointments')
   Future<List<Order>> getDoctorAppointments(@Query('userId') String userId);
+
+  @GET('/getmember')
+  Future<Member> getMemberDetail(
+      @Query('mobileNumber') String mobileNumber, @Query('email') String email);
 }
