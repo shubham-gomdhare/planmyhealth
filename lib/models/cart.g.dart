@@ -12,16 +12,16 @@ Cart _$CartFromJson(Map<String, dynamic> json) {
         ?.map((e) =>
             e == null ? null : Medicine.fromJson(e as Map<String, dynamic>))
         ?.toList(),
-    diagnoloticList: (json['diagnolotics'] as List)
+    diagnostic: (json['diagnostics'] as List)
         ?.map((e) =>
-            e == null ? null : Diagnolotic.fromJson(e as Map<String, dynamic>))
+            e == null ? null : Diagnostic.fromJson(e as Map<String, dynamic>))
         ?.toList(),
   );
 }
 
 Map<String, dynamic> _$CartToJson(Cart instance) => <String, dynamic>{
       'medicines': instance.medicineList,
-      'diagnolotics': instance.diagnoloticList,
+      'diagnostics': instance.diagnostic,
     };
 
 PostCart _$PostCartFromJson(Map<String, dynamic> json) {
@@ -34,6 +34,6 @@ PostCart _$PostCartFromJson(Map<String, dynamic> json) {
 
 Map<String, dynamic> _$PostCartToJson(PostCart instance) => <String, dynamic>{
       'userId': instance.userId,
-      'itemId': instance.id,
-      'itemType': instance.type,
+      'id': instance.id,
+      'type': instance.type,
     };

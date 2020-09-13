@@ -2,7 +2,7 @@ import 'dart:io';
 
 import 'package:dio/dio.dart';
 import 'package:medico/models/cart.dart';
-import 'package:medico/models/diagnolotic.dart';
+import 'package:medico/models/diagnostic.dart';
 import 'package:medico/models/doctors.dart';
 import 'package:medico/models/insurance.dart';
 import 'package:medico/models/medicines.dart';
@@ -26,8 +26,8 @@ abstract class ApiClient {
   @GET('/medicines')
   Future<List<Medicine>> getMedicines(@Query('page') int page);
 
-  @GET('/diagnolotics')
-  Future<List<Diagnolotic>> getDiagnolotics();
+  @GET('/diagnostics')
+  Future<List<Diagnostic>> getDiagnostics();
 
   @GET('/cart')
   Future<Cart> getCart(@Query('userId') String userId);

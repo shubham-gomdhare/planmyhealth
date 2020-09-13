@@ -3,7 +3,7 @@ import 'dart:io';
 
 import 'package:flutter/cupertino.dart';
 import 'package:medico/models/cart.dart';
-import 'package:medico/models/diagnolotic.dart';
+import 'package:medico/models/diagnostic.dart';
 import 'package:medico/models/medicines.dart';
 import 'package:medico/models/server_success.dart';
 import 'package:medico/services/shop_use_case.dart';
@@ -20,10 +20,10 @@ class ShopBloc {
   List<Medicine> _fullMedicines = [];
   bool isDoctorsFiltered = false;
 
-  final _diagnoloticController =
-      BehaviorSubject<ServerModel<List<Diagnolotic>>>();
-  List<Diagnolotic> _fullDiagnolotics = [];
-  bool isDiagnoloticsFiltered = false;
+  final _diagnosticController =
+      BehaviorSubject<ServerModel<List<Diagnostic>>>();
+  List<Diagnostic> _fullDiagnostics = [];
+  bool isDiagnosticsFiltered = false;
 
   final _inAsyncCallController = BehaviorSubject<bool>();
 
@@ -43,9 +43,9 @@ class ShopBloc {
 
   void getDiagnolotics() async {
     shopUseCase
-        .getDiagnolotics()
-        .then((serverModel) => _diagnoloticController.add(serverModel))
-        .catchError((serverModel) => _diagnoloticController.add(serverModel));
+        .getDiagnostics()
+        .then((serverModel) => _diagnosticController.add(serverModel))
+        .catchError((serverModel) => _diagnosticController.add(serverModel));
   }
 
   void getCart({@required String userId}) async {
@@ -65,7 +65,7 @@ class ShopBloc {
     if (model.data.medicineList == null) {
       Cart cart = Cart(
         medicineList: [],
-        diagnoloticList: model.data.diagnoloticList,
+        diagnostic: model.data.diagnostic,
       );
       cart.medicineList.add(medicine);
       model.data = cart;
@@ -102,46 +102,46 @@ class ShopBloc {
     }
   }
 
-  void filterDiagnolotic(String diagnoloticName) {
-    if (!isDiagnoloticsFiltered) {
-      _fullDiagnolotics = _diagnoloticController.value.data;
-      isDiagnoloticsFiltered = true;
+  void filterDiagnostic(String diagnosticName) {
+    if (!isDiagnosticsFiltered) {
+      _fullDiagnostics = _diagnosticController.value.data;
+      isDiagnosticsFiltered = true;
     }
 
-    final List<Diagnolotic> filteredDiagnolotics = [];
-    _fullDiagnolotics.forEach((diagnolotic) {
-      if (diagnolotic.name
+    final List<Diagnostic> filteredDiagnostic = [];
+    _fullDiagnostics.forEach((diagnostic) {
+      if (diagnostic.name
           .toLowerCase()
-          .contains(diagnoloticName.toLowerCase())) {
-        filteredDiagnolotics.add(diagnolotic);
+          .contains(diagnosticName.toLowerCase())) {
+        filteredDiagnostic.add(diagnostic);
       }
     });
 
-    if (diagnoloticName.isEmpty) {
-      _diagnoloticController.value.data = _fullDiagnolotics;
-      _diagnoloticController.add(_diagnoloticController.value);
+    if (diagnosticName.isEmpty) {
+      _diagnosticController.value.data = _fullDiagnostics;
+      _diagnosticController.add(_diagnosticController.value);
     } else {
-      _diagnoloticController.value.data = filteredDiagnolotics;
-      _diagnoloticController.add(_diagnoloticController.value);
+      _diagnosticController.value.data = filteredDiagnostic;
+      _diagnosticController.add(_diagnosticController.value);
     }
   }
 
-  void addDiaognoloticToCart(String userId, Diagnolotic diagnolotic) async {
+  void addDiagnosticToCart(String userId, Diagnostic diagnostic) async {
     _inAsyncCallController.add(true);
     await shopUseCase.addToCart(
-      postCart: PostCart(
-          userId: userId, id: diagnolotic.mongoId, type: 'Diagnolotic'),
+      postCart:
+          PostCart(userId: userId, id: diagnostic.mongoId, type: 'Diagnostic'),
     );
     ServerModel<Cart> model = _cartController.value;
-    if (model.data.diagnoloticList == null) {
+    if (model.data.diagnostic == null) {
       Cart cart = Cart(
         medicineList: model.data.medicineList,
-        diagnoloticList: [],
+        diagnostic: [],
       );
-      cart.diagnoloticList.add(diagnolotic);
+      cart.diagnostic.add(diagnostic);
       model.data = cart;
     } else {
-      model.data.diagnoloticList.add(diagnolotic);
+      model.data.diagnostic.add(diagnostic);
     }
     _cartController.add(model);
     _inAsyncCallController.add(false);
@@ -162,10 +162,10 @@ class ShopBloc {
       }
     }
 
-    if (type.toLowerCase() == 'Diagnolotic'.toLowerCase()) {
-      for (var element in model.data.diagnoloticList) {
+    if (type.toLowerCase() == 'Diagnostic'.toLowerCase()) {
+      for (var element in model.data.diagnostic) {
         if (element.mongoId == id) {
-          model.data.diagnoloticList.remove(element);
+          model.data.diagnostic.remove(element);
           break;
         }
       }
@@ -189,8 +189,8 @@ class ShopBloc {
   Stream<ServerModel<List<Medicine>>> get medicineStream =>
       _medicineController.stream;
 
-  Stream<ServerModel<List<Diagnolotic>>> get diagnoloticStream =>
-      _diagnoloticController.stream;
+  Stream<ServerModel<List<Diagnostic>>> get diagnosticStream =>
+      _diagnosticController.stream;
 
   Stream<ServerModel<Cart>> get cartStream => _cartController.stream;
 

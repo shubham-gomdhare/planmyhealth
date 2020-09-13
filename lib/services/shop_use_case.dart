@@ -2,7 +2,7 @@ import 'dart:io';
 
 import 'package:flutter/foundation.dart';
 import 'package:medico/models/cart.dart';
-import 'package:medico/models/diagnolotic.dart';
+import 'package:medico/models/diagnostic.dart';
 import 'package:medico/models/medicines.dart';
 import 'package:medico/models/order.dart';
 import 'package:medico/models/server_success.dart';
@@ -24,10 +24,10 @@ class ShopUseCase {
     return ServerModel()..data = response;
   }
 
-  Future<ServerModel<List<Diagnolotic>>> getDiagnolotics() async {
-    List<Diagnolotic> response;
+  Future<ServerModel<List<Diagnostic>>> getDiagnostics() async {
+    List<Diagnostic> response;
     try {
-      response = await apiService.getDiagnolotics();
+      response = await apiService.getDiagnostics();
     } catch (error, stacktrace) {
       print("Exception occurred: $error stackTrace: $stacktrace");
       return ServerModel()..setException(ServerError.withError(error: error));

@@ -10,6 +10,8 @@ Order _$OrderFromJson(Map<String, dynamic> json) {
   return Order(
     mongoId: json['_id'] as String,
     id: json['id'] as String,
+    name: json['name'] as String,
+    price: (json['price'] as num)?.toDouble(),
     type: json['type'] as String,
     updatedAt: json['updatedAt'] == null
         ? null
@@ -23,6 +25,8 @@ Order _$OrderFromJson(Map<String, dynamic> json) {
 Map<String, dynamic> _$OrderToJson(Order instance) => <String, dynamic>{
       '_id': instance.mongoId,
       'id': instance.id,
+      'name': instance.name,
+      'price': instance.price,
       'type': instance.type,
       'updatedAt': instance.updatedAt?.toIso8601String(),
       'createdAt': instance.createdAt?.toIso8601String(),

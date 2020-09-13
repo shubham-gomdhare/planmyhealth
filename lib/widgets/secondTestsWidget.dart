@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:medico/models/diagnolotic.dart';
+import 'package:medico/models/diagnostic.dart';
 
 class TestsSelected extends StatelessWidget {
-  final Diagnolotic diagnolotic;
+  final Diagnostic diagnolotic;
   final VoidCallback onRemovedFromCart;
   TestsSelected(this.diagnolotic, this.onRemovedFromCart);
 

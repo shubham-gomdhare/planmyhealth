@@ -18,7 +18,7 @@ class CartModel {
     double price = 0;
     final int quantity =
         (cart.medicineList == null ? 0 : cart.medicineList.length) +
-            (cart.diagnoloticList == null ? 0 : cart.diagnoloticList.length);
+            (cart.diagnostic == null ? 0 : cart.diagnostic.length);
     final List<CartItem> cartItems = [];
     if (cart.medicineList != null)
       cart.medicineList.forEach((medicine) {
@@ -27,8 +27,8 @@ class CartModel {
         cartItems.add(CartItem(
             medicine.mongoId, medicine.drugName, medicine.price, 'Medicine'));
       });
-    if (cart.diagnoloticList != null)
-      cart.diagnoloticList.forEach((diagnolotic) {
+    if (cart.diagnostic != null)
+      cart.diagnostic.forEach((diagnolotic) {
         price += diagnolotic.rate == null || diagnolotic.rate.isNaN
             ? 0
             : diagnolotic.rate;

@@ -1,13 +1,13 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 
-part of 'diagnolotic.dart';
+part of 'diagnostic.dart';
 
 // **************************************************************************
 // JsonSerializableGenerator
 // **************************************************************************
 
-Diagnolotic _$DiagnoloticFromJson(Map<String, dynamic> json) {
-  return Diagnolotic(
+Diagnostic _$DiagnosticFromJson(Map<String, dynamic> json) {
+  return Diagnostic(
     json['_id'] as String,
     json['id'] as int,
     json['name'] as String,
@@ -16,7 +16,7 @@ Diagnolotic _$DiagnoloticFromJson(Map<String, dynamic> json) {
   );
 }
 
-Map<String, dynamic> _$DiagnoloticToJson(Diagnolotic instance) =>
+Map<String, dynamic> _$DiagnosticToJson(Diagnostic instance) =>
     <String, dynamic>{
       '_id': instance.mongoId,
       'id': instance.id,

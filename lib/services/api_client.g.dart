@@ -56,11 +56,11 @@ class _ApiClient implements ApiClient {
   }
 
   @override
-  getDiagnolotics() async {
+  getDiagnostics() async {
     const _extra = <String, dynamic>{};
     final queryParameters = <String, dynamic>{};
     final _data = <String, dynamic>{};
-    final Response<List<dynamic>> _result = await _dio.request('/diagnolotics',
+    final Response<List<dynamic>> _result = await _dio.request('/diagnostics',
         queryParameters: queryParameters,
         options: RequestOptions(
             method: 'GET',
@@ -69,7 +69,7 @@ class _ApiClient implements ApiClient {
             baseUrl: baseUrl),
         data: _data);
     var value = _result.data
-        .map((dynamic i) => Diagnolotic.fromJson(i as Map<String, dynamic>))
+        .map((dynamic i) => Diagnostic.fromJson(i as Map<String, dynamic>))
         .toList();
     return value;
   }

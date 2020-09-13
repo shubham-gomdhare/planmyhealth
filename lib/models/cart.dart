@@ -1,6 +1,6 @@
 import 'package:flutter/foundation.dart';
 import 'package:json_annotation/json_annotation.dart';
-import 'package:medico/models/diagnolotic.dart';
+import 'package:medico/models/diagnostic.dart';
 import 'package:medico/models/medicines.dart';
 
 part 'cart.g.dart';
@@ -9,10 +9,10 @@ part 'cart.g.dart';
 class Cart {
   @JsonKey(name: 'medicines')
   final List<Medicine> medicineList;
-  @JsonKey(name: 'diagnolotics')
-  final List<Diagnolotic> diagnoloticList;
+  @JsonKey(name: 'diagnostics')
+  final List<Diagnostic> diagnostic;
 
-  Cart({this.medicineList, this.diagnoloticList});
+  Cart({this.medicineList, this.diagnostic});
 
   factory Cart.fromJson(Map<String, dynamic> json) => _$CartFromJson(json);
   Map<String, dynamic> toJson() => _$CartToJson(this);

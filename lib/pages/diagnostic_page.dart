@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:medico/blocs/shop_bloc.dart';
 import 'package:medico/models/cart.dart';
-import 'package:medico/models/diagnolotic.dart';
+import 'package:medico/models/diagnostic.dart';
 import 'package:medico/pages/cart_page.dart';
 import 'package:medico/services/api_client.dart';
 import 'package:medico/services/auth.dart';
@@ -58,12 +58,12 @@ class BookTestsOnline extends StatelessWidget {
               ),
             ),
           ),
-          body: StreamBuilder<ServerModel<List<Diagnolotic>>>(
-            stream: bloc.diagnoloticStream,
+          body: StreamBuilder<ServerModel<List<Diagnostic>>>(
+            stream: bloc.diagnosticStream,
             builder: (context, snapshot) {
               if (snapshot.data == null)
                 return Center(child: CircularProgressIndicator());
-              final diagnoloticList = snapshot.data.data;
+              final diagnosticList = snapshot.data.data;
               final error = snapshot.data.getException;
               return error == null
                   ? SingleChildScrollView(
@@ -85,7 +85,7 @@ class BookTestsOnline extends StatelessWidget {
                               Padding(
                                 padding: const EdgeInsets.only(
                                     top: 0, left: 12.0, right: 12.0),
-                                child: SearchBarWidget(bloc.filterDiagnolotic),
+                                child: SearchBarWidget(bloc.filterDiagnostic),
                               ),
                             ],
                           ),
@@ -113,13 +113,13 @@ class BookTestsOnline extends StatelessWidget {
                               color: Theme.of(context).primaryColor,
                               borderRadius: BorderRadius.circular(20.0),
                             ),
-                            child: diagnoloticList.isEmpty
+                            child: diagnosticList.isEmpty
                                 ? Text('No Tests found')
                                 : ListView.separated(
                                     padding: EdgeInsets.symmetric(vertical: 15),
                                     shrinkWrap: true,
                                     primary: false,
-                                    itemCount: diagnoloticList.length,
+                                    itemCount: diagnosticList.length,
                                     separatorBuilder: (context, index) {
                                       return SizedBox(
                                         height: 7,
@@ -127,11 +127,11 @@ class BookTestsOnline extends StatelessWidget {
                                     },
                                     itemBuilder: (context, index) {
                                       return Tests(
-                                        diagnoloticList.elementAt(index),
+                                        diagnosticList.elementAt(index),
                                         () {
-                                          bloc.addDiaognoloticToCart(
+                                          bloc.addDiagnosticToCart(
                                             user.uid,
-                                            diagnoloticList.elementAt(index),
+                                            diagnosticList.elementAt(index),
                                           );
                                         },
                                       );

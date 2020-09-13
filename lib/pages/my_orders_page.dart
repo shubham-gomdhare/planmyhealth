@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 import 'package:medico/blocs/my_orders_bloc.dart';
 import 'package:medico/models/order.dart';
+import 'package:medico/pages/detail_page.dart';
 import 'package:medico/services/api_client.dart';
 import 'package:medico/services/auth.dart';
 import 'package:medico/services/shop_use_case.dart';
@@ -99,6 +100,35 @@ class MyOrders extends StatelessWidget {
                   itemBuilder: (context, index) {
                     final order = result[index];
                     return ListTile(
+                      onTap: () {
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                            builder: (_) => DetailPage(
+                              [
+                                'OrderId',
+                                order.mongoId,
+                                'Name',
+                                order.name,
+                                'Price',
+                                order.price.toString(),
+                                'Order on',
+                                DateFormat('dd-MM-yy on hh:mm a').format(
+                                  order.createdAt.add(
+                                    Duration(
+                                      hours: 5,
+                                      minutes: 30,
+                                    ),
+                                  ),
+                                ),
+                                'Order Type',
+                                order.type,
+                              ],
+                              null,
+                            ),
+                          ),
+                        );
+                      },
                       leading: Icon(Icons.calendar_today),
                       title: Text('Order Id : ${order.mongoId}'),
                       subtitle: Text(
