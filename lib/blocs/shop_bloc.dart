@@ -58,8 +58,8 @@ class ShopBloc {
   void addMedicineToCart(String userId, Medicine medicine) async {
     _inAsyncCallController.add(true);
     await shopUseCase.addToCart(
-      postCart: PostCart(
-          userId: userId, itemId: medicine.mongoId, itemType: 'Medicine'),
+      postCart:
+          PostCart(userId: userId, id: medicine.mongoId, type: 'Medicine'),
     );
     ServerModel<Cart> model = _cartController.value;
     if (model.data.medicineList == null) {
@@ -130,7 +130,7 @@ class ShopBloc {
     _inAsyncCallController.add(true);
     await shopUseCase.addToCart(
       postCart: PostCart(
-          userId: userId, itemId: diagnolotic.mongoId, itemType: 'Diagnolotic'),
+          userId: userId, id: diagnolotic.mongoId, type: 'Diagnolotic'),
     );
     ServerModel<Cart> model = _cartController.value;
     if (model.data.diagnoloticList == null) {

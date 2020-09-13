@@ -27,13 +27,13 @@ Map<String, dynamic> _$CartToJson(Cart instance) => <String, dynamic>{
 PostCart _$PostCartFromJson(Map<String, dynamic> json) {
   return PostCart(
     userId: json['userId'] as String,
-    itemId: json['itemId'] as String,
-    itemType: json['itemType'] as String,
+    id: json['id'] as String,
+    type: json['type'] as String,
   );
 }
 
 Map<String, dynamic> _$PostCartToJson(PostCart instance) => <String, dynamic>{
       'userId': instance.userId,
-      'itemId': instance.itemId,
-      'itemType': instance.itemType,
+      'itemId': instance.id,
+      'itemType': instance.type,
     };

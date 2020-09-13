@@ -58,7 +58,7 @@ class MedicinesWidget extends StatelessWidget {
                         overflow: TextOverflow.ellipsis,
                       ),
                       Text(
-                        '₹${medicine.price}',
+                        'INR ${medicine.price}',
                         style: TextStyle(
                             fontFamily: 'Poppins',
                             fontSize: 12.0,

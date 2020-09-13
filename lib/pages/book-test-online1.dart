@@ -188,8 +188,8 @@ class BookTestsOnline extends StatelessWidget {
                             ),
                             Text(
                               snapshot.data == null
-                                  ? '₹ 0'
-                                  : '₹ ${cartModel.price}',
+                                  ? 'INR 0'
+                                  : 'INR ${cartModel.price}',
                               style: TextStyle(
                                   fontFamily: 'Poppins',
                                   fontSize: 12.0,

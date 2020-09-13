@@ -29,7 +29,7 @@ class CartList extends StatelessWidget {
                       ),
                     ),
                     Text(
-                      '₹ ${cartItem.price}',
+                      'INR ${cartItem.price}',
                       style: TextStyle(
                           fontFamily: 'Poppins',
                           fontSize: 12.0,

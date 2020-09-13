@@ -87,7 +87,7 @@ class Medicines extends StatelessWidget {
                           top: 12.0, right: 12.0, left: 12.0, bottom: 12.0),
                       alignment: Alignment.topLeft,
                       child: Text(
-                        'Medecines :',
+                        'Medicines :',
                         style: TextStyle(
                           fontFamily: 'Poppins',
                           fontSize: 16.0,
@@ -238,8 +238,8 @@ class Medicines extends StatelessWidget {
                               ),
                               Text(
                                 snapshot.data.data == null
-                                    ? '₹ 0'
-                                    : '₹ ${cartModel.price}',
+                                    ? 'INR 0'
+                                    : 'INR ${cartModel.price}',
                                 style: TextStyle(
                                     fontFamily: 'Poppins',
                                     fontSize: 12.0,

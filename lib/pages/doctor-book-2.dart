@@ -170,7 +170,7 @@ class DoctorBookSecondeStep extends StatelessWidget {
                                           height: 15.0,
                                         ),
                                         Text(
-                                          "600\$",
+                                          "INR : 600",
                                           style: TextStyle(
                                             fontFamily: 'Poppins',
                                             fontSize: 14.0,

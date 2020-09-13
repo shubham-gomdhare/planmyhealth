@@ -137,7 +137,7 @@ class CartPage extends StatelessWidget {
                                                 ),
                                               ),
                                               Text(
-                                                '₹ ${cartModel.price}',
+                                                'INR${cartModel.price}',
                                                 style: TextStyle(
                                                   fontFamily: 'Poppins',
                                                   fontSize: 16.0,
@@ -235,8 +235,8 @@ class CartPage extends StatelessWidget {
                             ),
                             Text(
                               snapshot.data.data == null
-                                  ? '₹ 0'
-                                  : '₹ ${cartModel.price}',
+                                  ? 'INR 0'
+                                  : 'INR ${cartModel.price}',
                               style: TextStyle(
                                   fontFamily: 'Poppins',
                                   fontSize: 12.0,

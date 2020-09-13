@@ -16,8 +16,7 @@ part 'api_client.g.dart';
 
 // http://ec2-18-216-148-49.us-east-2.compute.amazonaws.com
 // http://192.168.1.4
-@RestApi(
-    baseUrl: "http://ec2-18-216-148-49.us-east-2.compute.amazonaws.com:8080")
+@RestApi(baseUrl: "http://192.168.1.4:8080")
 abstract class ApiClient {
   factory ApiClient(Dio dio, {String baseUrl}) = _ApiClient;
 

@@ -21,11 +21,16 @@ class Cart {
 @JsonSerializable()
 class PostCart {
   final String userId;
-  final String itemId;
-  final String itemType;
+  final String id;
+  final String type;
 
-  PostCart({@required this.userId, @required this.itemId, @required this.itemType,});
+  PostCart({
+    @required this.userId,
+    @required this.id,
+    @required this.type,
+  });
 
-  factory PostCart.fromJson(Map<String, dynamic> json) => _$PostCartFromJson(json);
+  factory PostCart.fromJson(Map<String, dynamic> json) =>
+      _$PostCartFromJson(json);
   Map<String, dynamic> toJson() => _$PostCartToJson(this);
 }
