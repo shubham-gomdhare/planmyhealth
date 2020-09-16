@@ -20,8 +20,6 @@ Diagnostic _$DiagnosticFromJson(Map<String, dynamic> json) {
     json['testResults'] as String,
     json['detailedDescription'] as String,
     json['diseaseListForWhichTheseTestIsConducted'] as String,
-    json['minAge'] as String,
-    json['maxAge'] as String,
     json['needDocPrescriptionFlag'] as String,
     json['testType'] as String,
   );
@@ -42,8 +40,6 @@ Map<String, dynamic> _$DiagnosticToJson(Diagnostic instance) =>
       'detailedDescription': instance.detailedDescription,
       'diseaseListForWhichTheseTestIsConducted':
           instance.diseaseListForWhichTheseTestIsConducted,
-      'minAge': instance.minAge,
-      'maxAge': instance.maxAge,
       'needDocPrescriptionFlag': instance.needDocPrescriptionFlag,
       'testType': instance.testType,
     };

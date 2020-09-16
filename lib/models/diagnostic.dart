@@ -17,8 +17,6 @@ class Diagnostic {
   final String testResults;
   final String detailedDescription;
   final String diseaseListForWhichTheseTestIsConducted;
-  final String minAge;
-  final String maxAge;
   final String needDocPrescriptionFlag;
   final String testType;
 
@@ -35,8 +33,6 @@ class Diagnostic {
       this.testResults,
       this.detailedDescription,
       this.diseaseListForWhichTheseTestIsConducted,
-      this.minAge,
-      this.maxAge,
       this.needDocPrescriptionFlag,
       this.testType);
 
