@@ -8,11 +8,11 @@ import 'package:modal_progress_hud/modal_progress_hud.dart';
 import 'detail_page.dart';
 import 'order_success_page.dart';
 
-class PhysiotherapySpecialistPage extends StatelessWidget {
+class FindSpecialist extends StatelessWidget {
   final HealthAssistPageBloc bloc;
   final User user;
 
-  PhysiotherapySpecialistPage({this.bloc, this.user});
+  FindSpecialist({this.bloc, this.user});
 
   @override
   Widget build(BuildContext context) {
@@ -35,7 +35,7 @@ class PhysiotherapySpecialistPage extends StatelessWidget {
               ),
               backgroundColor: Theme.of(context).accentColor,
               title: Text(
-                'Physiotherapy Specialities',
+                'Find Specialist',
                 style: TextStyle(
                   fontSize: 22.0,
                   fontFamily: 'Poppins',

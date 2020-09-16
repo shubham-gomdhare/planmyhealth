@@ -3,12 +3,13 @@ import 'package:flutter/widgets.dart';
 import 'package:medico/blocs/health_assist_page_bloc.dart';
 import 'package:medico/pages/home_health_page.dart';
 import 'package:medico/pages/hospitalization_assistance_page.dart';
-import 'package:medico/pages/insurance_page.dart';
 import 'package:medico/pages/physiotherapy_speciality_page.dart';
 import 'package:medico/services/api_client.dart';
 import 'package:medico/services/auth.dart';
 import 'package:medico/services/health_assist_use_case.dart';
 import 'package:provider/provider.dart';
+
+import 'insurance_claim_page.dart';
 
 const titles = [
   'I want Hospitalization',
@@ -95,7 +96,7 @@ class HealthAssistPage extends StatelessWidget {
                     Navigator.push(
                       context,
                       MaterialPageRoute(
-                        builder: (_) => PhysiotherapySpecialistPage(
+                        builder: (_) => FindSpecialist(
                           bloc: bloc,
                           user: user,
                         ),
@@ -106,7 +107,7 @@ class HealthAssistPage extends StatelessWidget {
                     Navigator.push(
                       context,
                       MaterialPageRoute(
-                        builder: (_) => InsurancePage(
+                        builder: (_) => InsuranceClaimPage(
                           bloc: bloc,
                           user: user,
                         ),

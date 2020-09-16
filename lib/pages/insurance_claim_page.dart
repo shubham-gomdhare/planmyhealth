@@ -8,11 +8,11 @@ import 'package:modal_progress_hud/modal_progress_hud.dart';
 
 import 'order_success_page.dart';
 
-class InsurancePage extends StatelessWidget {
+class InsuranceClaimPage extends StatelessWidget {
   final HealthAssistPageBloc bloc;
   final User user;
 
-  InsurancePage({this.bloc, this.user});
+  InsuranceClaimPage({this.bloc, this.user});
 
   @override
   Widget build(BuildContext context) {
@@ -35,7 +35,7 @@ class InsurancePage extends StatelessWidget {
               ),
               backgroundColor: Theme.of(context).accentColor,
               title: Text(
-                'Insurances',
+                'Insurance Claim',
                 style: TextStyle(
                   fontSize: 22.0,
                   fontFamily: 'Poppins',

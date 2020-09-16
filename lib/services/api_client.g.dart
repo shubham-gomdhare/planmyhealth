@@ -9,7 +9,8 @@ part of 'api_client.dart';
 class _ApiClient implements ApiClient {
   _ApiClient(this._dio, {this.baseUrl}) {
     ArgumentError.checkNotNull(_dio, '_dio');
-    this.baseUrl ??= 'http://192.168.1.5:8080';
+    this.baseUrl ??=
+        'http://ec2-18-216-148-49.us-east-2.compute.amazonaws.com:8080';
   }
 
   final Dio _dio;
