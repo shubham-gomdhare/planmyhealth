@@ -118,7 +118,6 @@ class _HomeState extends State<Home> with SingleTickerProviderStateMixin {
   }
 
   StreamBuilder homeWidget() {
-    final auth = Provider.of<AuthBase>(context, listen: false);
     return StreamBuilder<ServerModel<List<Doctor>>>(
       stream: bloc.doctorStream,
       initialData: null,
@@ -266,7 +265,7 @@ class _HomeState extends State<Home> with SingleTickerProviderStateMixin {
                                   color: Colors.grey.withOpacity(0.2)),
                               borderRadius: BorderRadius.circular(16.0),
                               image: DecorationImage(
-                                image: AssetImage('images/doctor-3.jpg'),
+                                image: AssetImage('images/carousel-1.jpg'),
                                 fit: BoxFit.cover,
                               ),
                             ),
@@ -281,7 +280,7 @@ class _HomeState extends State<Home> with SingleTickerProviderStateMixin {
                               borderRadius: BorderRadius.circular(16.0),
                               image: DecorationImage(
                                 image: AssetImage(
-                                  'images/doctor-5.jpg',
+                                  'images/carousel-1.jpg',
                                 ),
                                 fit: BoxFit.cover,
                               ),
@@ -297,7 +296,7 @@ class _HomeState extends State<Home> with SingleTickerProviderStateMixin {
                               borderRadius: BorderRadius.circular(16.0),
                               image: DecorationImage(
                                 image: AssetImage(
-                                  'images/doctor-2.jpg',
+                                  'images/carousel-1.jpg',
                                 ),
                                 fit: BoxFit.cover,
                               ),
