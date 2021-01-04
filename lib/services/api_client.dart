@@ -1,5 +1,4 @@
 import 'dart:io';
-
 import 'package:dio/dio.dart';
 import 'package:medico/models/cart.dart';
 import 'package:medico/models/diagnostic.dart';
@@ -17,7 +16,7 @@ part 'api_client.g.dart';
 
 // http://ec2-18-216-148-49.us-east-2.compute.amazonaws.com
 @RestApi(
-    baseUrl: "http://ec2-18-216-148-49.us-east-2.compute.amazonaws.com:8080")
+    baseUrl: "http://3.15.233.253:5000")
 abstract class ApiClient {
   factory ApiClient(Dio dio, {String baseUrl}) = _ApiClient;
 

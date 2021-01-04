@@ -26,7 +26,7 @@ class _CreateAcountState extends State<CreateAcount> {
           icon: Icon(Icons.arrow_back,color: Theme.of(context).primaryColor),
         ),
         title: Text(
-          "Create An Acount",
+          "Create An Account",
           style:TextStyle(
             fontFamily: 'Poppins',
             fontSize: 20.0,

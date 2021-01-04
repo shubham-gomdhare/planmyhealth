@@ -10,7 +10,7 @@ class _ApiClient implements ApiClient {
   _ApiClient(this._dio, {this.baseUrl}) {
     ArgumentError.checkNotNull(_dio, '_dio');
     this.baseUrl ??=
-        'http://ec2-18-216-148-49.us-east-2.compute.amazonaws.com:8080';
+        'http://3.15.233.253:5000';
   }
 
   final Dio _dio;
